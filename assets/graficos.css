@@ -1,0 +1,100 @@
+/* Presentación interactiva. La tipografía y los colores pertenecen al libro original. */
+html { scroll-behavior: auto; }
+.solo-interactivo { display: none !important; }
+.graficos-listos .solo-interactivo { display: flex !important; }
+.portada-acciones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; font: 500 15px/1.4 var(--sans); }
+.portada-acciones a, .portada-acciones button { padding: 12px 19px; border-radius: 7px; text-decoration: none; }
+.accion-principal { color: white; background: var(--marino); display: flex; gap: 28px; align-items: center; }
+.accion-principal:hover { color: white; background: #242c83; }
+.portada-acciones button { color: var(--marino); border: 1px solid var(--linea); background: transparent; font: inherit; cursor: pointer; }
+.recorrido-visual { padding: 27px 0 30px; border-bottom: 1px solid var(--linea); font-family: var(--sans); }
+.recorrido-titulo { color: var(--marino); font-size: 17px; font-weight: 600; margin: 0 0 18px; }
+.recorrido-titulo > span { display: block; margin-top: 3px; font-weight: 400; font-size: 14px; color: var(--tinta-2); }
+.recorrido-enlaces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.recorrido-enlaces a { font-size: 13px; text-decoration: none; background: #fff; border: 1px solid var(--linea); border-radius: 7px; padding: 10px; line-height: 1.3; transition: border-color .15s, background .15s; }
+.recorrido-enlaces a:hover { border-color: var(--naranja); background: var(--naranja-suave); }
+.recorrido-enlaces a > span { display: block; color: #a65117; font-size: 11px; margin-bottom: 3px; font-weight: 600; letter-spacing: .08em; }
+.grafico-card { background: white; border: 1px solid #dddfe9; border-radius: 14px; box-shadow: 0 8px 32px #0f146007; padding: 25px 24px 0; margin: 28px 0 36px; overflow: hidden; font-family: var(--sans); scroll-margin-top: 28px; }
+.grafico-cabecera { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.grafico-etiqueta { margin: 0 0 9px; font: 600 11px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: #8c491c; }
+.grafico-etiqueta span { padding: 0 6px; color: #b2b5c6; }
+.grafico-cabecera h3 { margin: 0; font: 500 clamp(20px, 2.5vw, 25px)/1.25 var(--sans); color: var(--marino); max-width: 640px; }
+.grafico-card button, .presentacion button, .grafico-card select { font: 500 13px/1.3 var(--sans); cursor: pointer; color: var(--marino); border: 1px solid #d7d9e4; border-radius: 6px; background: white; min-height: 36px; padding: 7px 11px; }
+.grafico-card button:hover, .presentacion button:hover { border-color: var(--marino); background: #f4f5fb; }
+.grafico-ampliar { flex: none; white-space: nowrap; gap: 6px; }
+.grafico-controles { gap: 8px 16px; flex-wrap: wrap; align-items: center; padding-top: 20px; }
+.grafico-controles label { display: inline-flex; align-items: center; gap: 7px; color: var(--tinta-2); font-size: 13px; line-height: 1.4; }
+.grafico-controles select { max-width: 260px; min-width: 90px; text-overflow: ellipsis; }
+.grafico-controles input[type=checkbox] { accent-color: var(--marino); width: 16px; height: 16px; margin: 0; cursor: pointer; }
+.grafico-controles .grafico-restablecer { margin-left: auto; font-weight: 400; color: var(--tinta-2); border-color: transparent; font-size: 12px; }
+.grafico-ayuda { color: #626981; font-size: 12px; line-height: 1.5; margin: 12px 0 0; }
+.grafico-lienzo { width: 100%; min-width: 0; margin-top: 8px; }
+.grafico-lienzo[hidden] { display: none; }
+.grafico-card .grafico-respaldo { border: 0; margin: 18px auto; }
+.grafico-card[data-ready] .grafico-respaldo { display: none; }
+.grafico-seleccion { font: 500 13px/1.5 var(--sans); color: var(--marino); border: 1px solid #cdd4e7; background: #f1f4fc; padding: 10px 13px; border-radius: 6px; margin: 6px 0 12px; }
+.grafico-seleccion[hidden] { display: none; }
+.grafico-nota { padding: 13px 15px; margin: 8px 0 19px; border-radius: 7px; border-left: 3px solid var(--naranja); color: var(--tinta-2); background: #f7f7fa; font: 400 13px/1.55 var(--sans); }
+.datos-grafico { border-top: 1px solid #e8e9ef; margin: 0 -24px; }
+.datos-grafico > summary { cursor: pointer; color: var(--marino); padding: 13px 24px; font: 500 12px/1.5 var(--sans); }
+.tabla-grafico { max-height: 360px; margin: 0; padding: 0 24px 20px; }
+.tabla-grafico caption { text-align: left; font-size: 12px; padding: 5px 0 12px; color: var(--tinta-2); }
+.tabla-grafico table { font-size: 12px; }
+.tabla-grafico thead { position: sticky; top: 0; background: #fff; z-index: 1; }
+.tabla-grafico td { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.grafico-card :focus-visible, .presentacion :focus-visible, .portada-acciones :focus-visible, .recorrido-visual :focus-visible { outline: 3px solid #d67a2d; outline-offset: 3px; }
+.presentacion { width: calc(100vw - 40px); max-width: 1420px; max-height: calc(100dvh - 32px); padding: 0; border: 1px solid #d7d9e4; border-radius: 15px; color: var(--tinta); background: var(--papel); }
+.presentacion::backdrop { background: #080d38cf; backdrop-filter: blur(5px); }
+body.en-presentacion { overflow: hidden; }
+.presentacion-barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 24px; border-bottom: 1px solid var(--linea); font: 500 14px/1.4 var(--sans); background: var(--papel); position: sticky; top: 0; z-index: 5; }
+.presentacion-marca { color: var(--marino); }
+.presentacion-cuenta { font-size: 12px; color: var(--tinta-2); margin-left: 12px; font-variant-numeric: tabular-nums; }
+.presentacion-navegar { display: flex; gap: 8px; }
+.presentacion button:disabled { opacity: .4; cursor: default; }
+.presentacion .cerrar-presentacion { background: var(--marino); color: white; border-color: var(--marino); }
+.presentacion-contenido { padding: 20px 26px; }
+.presentacion .grafico-card { margin: 0; box-shadow: none; }
+.presentacion .grafico-ampliar { display: none !important; }
+.presentacion .grafico-cabecera h3 { max-width: none; }
+.presentacion .grafico-ayuda { display: none !important; }
+.presentacion .grafico-controles { padding-top: 12px; }
+.presentacion .grafico-nota { margin-bottom: 12px; padding: 10px 12px; }
+.grafico-espacio { visibility: hidden; }
+@media (min-width: 1400px) {
+  .libro { max-width: 860px; }
+  .grafico-card { margin-left: -35px; margin-right: -35px; }
+  .presentacion .grafico-card { margin: 0; }
+}
+@media (max-width: 650px) {
+  .recorrido-enlaces { grid-template-columns: repeat(2, 1fr); }
+  .grafico-card { padding: 18px 12px 0; border-radius: 10px; scroll-margin-top: 65px; }
+  .grafico-cabecera { gap: 10px; }
+  .grafico-cabecera h3 { font-size: 20px; }
+  .grafico-card button { font-size: 12px; padding: 7px 9px; }
+  .grafico-ampliar { font-size: 11px !important; }
+  .grafico-controles { gap: 10px; }
+  .grafico-controles label { flex-wrap: wrap; }
+  .grafico-controles select { max-width: 205px; }
+  .grafico-controles .grafico-restablecer { margin-left: 0; }
+  .grafico-nota { font-size: 12px; padding: 10px; }
+  .datos-grafico { margin: 0 -12px; }
+  .datos-grafico > summary { padding: 12px; }
+  .tabla-grafico { padding: 0 12px 12px; }
+  .presentacion { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); border-radius: 10px; }
+  .presentacion-barra { padding: 10px; flex-wrap: wrap; }
+  .presentacion-marca { width: 100%; display: flex; justify-content: space-between; }
+  .presentacion-navegar { width: 100%; }
+  .cerrar-presentacion { margin-left: auto; }
+  .presentacion-contenido { padding: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+@media print {
+  .recorrido-visual, .portada-acciones, .grafico-controles, .grafico-ayuda, .grafico-ampliar, .datos-grafico, .presentacion, .grafico-seleccion { display: none !important; }
+  .graficos-listos .solo-interactivo, .grafico-lienzo { display: none !important; }
+  .grafico-card[data-ready] .grafico-respaldo { display: block !important; }
+  .grafico-card { box-shadow: none; margin: 18px 0; padding: 12px; break-inside: avoid; }
+  .grafico-card .grafico-respaldo { max-height: 650px; object-fit: contain; }
+}

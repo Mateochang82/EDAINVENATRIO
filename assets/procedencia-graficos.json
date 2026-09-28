@@ -1,0 +1,11 @@
+{
+  "fuente": "docs/tablas_inventario/evidencia_resultados.json",
+  "sha256": "86ceb3345e0b4c7b74955b3a7d5a11b7fcf96252813b1ea182ea5f6aa65dca3a",
+  "tablas": [
+    "05_series_mensuales",
+    "09_panel_producto_mes",
+    "10_productos_48",
+    "14_correlacion_rezagos"
+  ],
+  "criterio": "Agregados guardados; sin ejecutar el notebook ni leer movimientos individuales."
+}

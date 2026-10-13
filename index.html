@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Análisis exploratorio de inventario · Infectólogos y Asociados</title>
-<meta name="description" content="Seminario Investigativo: construcción, validación y exploración de los movimientos de inventario de vacunas.">
+<meta name="description" content="Seminario Investigativo: análisis histórico para diseñar y evaluar una política de compra y reposición de vacunas.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,10 +59,35 @@ main { margin-left: var(--lateral-ancho); padding: 0 48px 80px; }
 .portada .etiqueta { font: 500 14px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--naranja); margin: 0 0 18px; }
 .portada h1.titulo { font: 500 clamp(34px, 5vw, 52px)/1.1 var(--sans); color: var(--marino); margin: 0 0 18px; }
 .portada .sub { font: 400 20px/1.5 var(--sans); color: var(--tinta-2); margin: 0; }
+.portada .proyecto { font: 400 15.5px/1.55 var(--sans); color: var(--tenue); margin: 18px 0 0; max-width: 640px;
+  padding-left: 14px; border-left: 3px solid var(--naranja); }
 
-.pregunta { padding: 96px 0; text-align: center; border-bottom: 1px solid var(--linea); }
+/* ---------- Ruta del proyecto ---------- */
+.ruta-proyecto { padding: 40px 0 36px; border-bottom: 1px solid var(--linea); font-family: var(--sans); }
+.ruta-etiqueta { font: 500 13px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: #a65117; margin: 0 0 10px; }
+.ruta-proyecto h2 { font: 500 26px/1.25 var(--sans); color: var(--marino); margin: 0 0 8px; }
+.ruta-intro { font: 400 15.5px/1.55 var(--sans); color: var(--tinta-2); margin: 0 0 20px; max-width: 680px; }
+.ruta-pasos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; counter-reset: paso; }
+.ruta-pasos a { display: flex; flex-direction: column; gap: 6px; height: 100%; text-decoration: none; background: #fff;
+  border: 1px solid var(--linea); border-radius: 10px; padding: 12px 12px 14px; transition: border-color .15s, background .15s; }
+.ruta-pasos a:hover { border-color: var(--marino); }
+.ruta-pasos .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 13px/1 var(--sans);
+  color: var(--tenue); border: 1.5px solid #c9cbd8; }
+.ruta-pasos .t { font: 500 14px/1.3 var(--sans); color: var(--marino); }
+.ruta-pasos small { font: 400 12px/1.3 var(--sans); color: var(--tenue); margin-top: auto; }
+.ruta-pasos .hecho .n { background: var(--marino); border-color: var(--marino); color: #fff; }
+.ruta-pasos .actual a { border-color: var(--naranja); background: var(--naranja-suave); box-shadow: inset 0 0 0 1px var(--naranja); }
+.ruta-pasos .actual small { color: #a65117; font-weight: 500; }
+.ruta-pasos .siguiente .n { border-color: var(--naranja); color: #a65117; }
+.ruta-pasos .pendiente a { border-style: dashed; background: transparent; }
+.ruta-meta { font: 400 14px/1.55 var(--sans); color: var(--tinta-2); margin: 18px 0 0; padding: 12px 14px; background: #f7f7fa;
+  border-radius: 8px; border-left: 3px solid var(--marino); }
+
+.pregunta { padding: 88px 0; text-align: center; border-bottom: 1px solid var(--linea); }
 .pregunta p { font: italic 400 clamp(26px, 3.4vw, 36px)/1.4 var(--serif); color: var(--marino); max-width: 700px; margin: 0 auto; }
-.pregunta::before { content: ""; display: block; width: 56px; height: 56px; margin: 0 auto 36px;
+.pregunta p.pregunta-etiqueta { font: 500 13px/1 var(--sans); font-style: normal; letter-spacing: .14em; text-transform: uppercase;
+  color: #a65117; margin-bottom: 22px; }
+.pregunta::before { content: ""; display: block; width: 56px; height: 56px; margin: 0 auto 30px;
   background: url(assets/icono_infectologos.png) center/contain no-repeat; }
 
 .md h1 { font: 500 clamp(28px, 3.5vw, 38px)/1.2 var(--sans); color: var(--marino); margin: 24px 0 8px; padding-top: 36px; }
@@ -192,7 +217,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   .boton-menu img { width: 22px; height: 22px; }
   body { font-size: 17px; }
   .portada { min-height: auto; padding: 32px 0; }
-  .pregunta { padding: 64px 0; }
+  .pregunta { padding: 56px 0; }
+  .ruta-pasos { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .ruta-pasos { grid-template-columns: repeat(2, 1fr); }
 }
 @media print {
   .lateral, .boton-menu, #progreso { display: none; }
@@ -214,7 +243,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <ul class="toc">
 <li class="toc-h2"><a href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
 <li class="toc-h1"><a href="#parte-i-el-problema-y-los-datos">Parte I · El problema y los datos</a></li>
-<li class="toc-h2"><a href="#0-contexto-y-objetivo">0. Contexto y objetivo</a></li>
+<li class="toc-h2"><a href="#0-contexto-pregunta-y-objetivos">0. Contexto, pregunta y objetivos</a></li>
 <li class="toc-h2"><a href="#1-fuente-de-datos">1. Fuente de datos</a></li>
 <li class="toc-h1"><a href="#parte-ii-construccion-y-validacion-de-la-base-analitica-fase">Parte II · Construcción y validación de la base analítica (Fase 1)</a></li>
 <li class="toc-h2"><a href="#2-carga-y-estructura-original-paso-1">2. Carga y estructura original (Paso 1)</a></li>
@@ -234,7 +263,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li class="toc-h2"><a href="#15-saldos-bodegas-y-limites-de-la-lectura-monetaria">15. Saldos, bodegas y límites de la lectura monetaria</a></li>
 <li class="toc-h2"><a href="#16-verificacion-de-los-agregados">16. Verificación de los agregados</a></li>
 <li class="toc-h1"><a href="#parte-iv-cierre">Parte IV · Cierre</a></li>
-<li class="toc-h2"><a href="#17-conclusiones-hacia-la-variable-respuesta">17. Conclusiones: hacia la variable respuesta</a></li>
+<li class="toc-h2"><a href="#17-conclusiones-y-ruta-hacia-la-politica-de-compra">17. Conclusiones y ruta hacia la política de compra</a></li>
 <li class="toc-h2"><a href="#anexo-tecnico-reproducibilidad">Anexo técnico · Reproducibilidad</a></li>
   </ul>
 </nav>
@@ -245,12 +274,38 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <img src="assets/logo_infectologos.png" alt="Infectólogos y Asociados">
       <p class="etiqueta">Seminario Investigativo</p>
       <h1 class="titulo">Análisis exploratorio de inventario</h1>
-      <p class="sub">Infectólogos y Asociados LTDA · Construcción, validación y exploración de los movimientos de inventario de vacunas, 2023–2026</p>
+      <p class="sub">Infectólogos y Asociados LTDA · Base histórica para diseñar y evaluar la política de compra y reposición de vacunas, 2023–2026</p>
+      <p class="proyecto">Proyecto: Diseño y evaluación de una política de compra y reposición de vacunas para reducir faltantes y pérdidas de inventario en Infectólogos y Asociados LTDA.</p>
       <div class="portada-acciones">
         <a class="accion-principal" href="#recorrido-visual">Explorar los gráficos <span aria-hidden="true">↓</span></a>
         <button type="button" class="abrir-presentacion solo-interactivo">Modo presentación ↗</button>
       </div>
     </header>
+<section aria-label="Pregunta de apertura" class="pregunta"><p>¿Cuánto y cuándo comprar cada vacuna sin quedarse corto ni comprar de más?</p></section>
+<div class="md"><p>Cada compra de vacunas busca un equilibrio. Si se compra menos de lo necesario aparecen faltantes; si se
+compra más, el inventario se acumula, la rotación baja y aumenta el riesgo de que las unidades venzan antes de
+usarse. La empresa aspira a estar siempre abastecida sin perder dinero por inventario; en este proyecto esa
+aspiración se expresa como metas medibles: alcanzar un nivel de abastecimiento acordado y reducir los costos y
+las pérdidas de inventario.</p>
+<p>El resultado principal del proyecto será una política de compra y reposición por referencia. Este documento
+presenta su primera base: el análisis exploratorio (EDA) del histórico de movimientos. El EDA caracteriza cada
+referencia y prepara los datos para decidir compras; todavía no calcula cantidades, pronósticos ni ahorros. La pregunta de
+investigación, con todas sus condiciones, se presenta en la sección 0.</p>
+</div>
+    <section class="ruta-proyecto" id="ruta-proyecto" aria-labelledby="ruta-titulo">
+      <p class="ruta-etiqueta">Ruta del proyecto</p>
+      <h2 id="ruta-titulo">Del histórico a la política de compra</h2>
+      <p class="ruta-intro">Este documento cubre las dos primeras etapas. Las siguientes requieren datos que la empresa debe validar o suministrar antes de calcular compras.</p>
+      <ol class="ruta-pasos">
+        <li class="hecho"><a href="#parte-ii-construccion-y-validacion-de-la-base-analitica-fase"><span class="n">1</span><span class="t">Base histórica validada</span><small>Hecho · Fase 1</small></a></li>
+        <li class="hecho actual"><a href="#parte-iii-exploracion-de-los-movimientos"><span class="n">2</span><span class="t">Caracterización por referencia</span><small>Este EDA</small></a></li>
+        <li class="siguiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">3</span><span class="t">Consumo observado y datos operativos</span><small>Siguiente etapa</small></a></li>
+        <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">4</span><span class="t">Comparación de pronósticos</span><small>Pendiente</small></a></li>
+        <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">5</span><span class="t">Simulación de políticas de compra</span><small>Pendiente</small></a></li>
+        <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">6</span><span class="t">Herramienta y piloto</span><small>Pendiente</small></a></li>
+      </ol>
+      <p class="ruta-meta">Meta: un nivel de abastecimiento acordado y menores costos y pérdidas de inventario, medidos con indicadores definidos con la empresa. Las cantidades de compra, los ahorros y la reducción de vencimientos todavía no se han calculado.</p>
+    </section>
     <nav class="recorrido-visual" id="recorrido-visual" aria-label="Recorrido por los gráficos">
       <p class="recorrido-titulo">El EDA en siete gráficos <span>Explora las visualizaciones dentro de cada sección.</span></p>
       <div class="recorrido-enlaces">
@@ -263,40 +318,41 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <a href="#figura-07"><span>07</span> Distribuciones</a>
       </div>
     </nav>
-<section class="pregunta"><p>¿Cómo decidir cuánto comprar de una vacuna si una salida del inventario no necesariamente significa que esa vacuna fue consumida?</p></section>
-<div class="md"><p>La empresa necesita decidir cuánto y cuándo comprar cada vacuna, y el registro histórico del que dispone es
-el movimiento contable de su inventario. Ese registro dice qué unidades salieron, pero no por qué salieron.
-Antes de estimar cualquier nivel de stock hay que establecer qué parte de esas salidas refleja el uso real de
-las vacunas. Este documento reconstruye los datos con ese propósito y muestra hasta dónde permiten avanzar.</p>
-</div>
+
 <div class="md"><h2 id="lectura-ejecutiva">Lectura ejecutiva</h2>
-<p>Problema. Infectólogos y Asociados LTDA debe equilibrar dos riesgos: no disponer de una vacuna cuando se
-necesita y mantener existencias que terminen venciéndose. El proyecto busca apoyar decisiones de stock por
-vacuna (stock de seguridad, mínimos y máximos, puntos de reorden). Este análisis es la etapa previa: no
-pronostica ni calcula políticas de compra.</p>
+<p>Problema. Infectólogos y Asociados LTDA necesita decidir cuánto y cuándo comprar cada referencia de vacuna. El
+proyecto diseñará y evaluará una política de compra y reposición que combine el comportamiento histórico con las
+existencias utilizables, los tiempos de entrega y los vencimientos. El pronóstico y el software serán
+herramientas para diseñarla, evaluarla y aplicarla.</p>
 <p>Datos. Cuatro exportaciones del informe de movimientos de inventario de Siigo: 2023, 2024, 2025 y
-enero–septiembre de 2026. Diciembre de 2023, 2024 y 2025 y septiembre de 2026 terminan antes de fin de mes;
-se tratan como periodos incompletos y no se imputan.</p>
-<p>Qué se hizo. De las 188.078 filas exportadas, solo 119.214 son movimientos de inventario; el resto son
-filas de lote (68.733), subtotales (130) y un registro de relleno (1). Con los movimientos se construyó una
-base analítica de 48 productos y 50 variables, trazable hasta la fila exacta del Excel, que superó los
-22 controles de validación. Sobre esa base se describieron los tipos de documento, la concentración por
-producto y la evolución mensual: diez referencias reúnen el 55,35 % de las salidas facturadas, la regularidad
-cambia mucho de una vacuna a otra y hay una señal descriptiva de repetición anual.</p>
-<p>Hallazgo metodológico principal. Las salidas del inventario no son una medida directa de consumo. De
-341.852 unidades de salida, 301.429 están registradas en facturas (F003 y F005); las demás provienen de otros
-documentos, sobre todo T001, cuyo patrón es compatible con traslados entre bodegas. Contar todas las salidas
-sobrestimaría el volumen facturado en 13,41 %. Además, una factura no equivale por sí sola a una vacuna
-aplicada, y el informe no registra las solicitudes que no pudieron atenderse.</p>
-<p>Qué falta. Definir con la empresa la variable respuesta: qué documentos representan uso efectivo de
-vacunas, cómo descontar devoluciones y traslados y cómo tratar los meses incompletos. Solo sobre esa
-definición tiene sentido modelar la demanda.</p>
+enero–septiembre de 2026. Diciembre de 2023, 2024 y 2025 y septiembre de 2026 terminan antes de fin de mes; se
+identifican como periodos incompletos y no se imputan.</p>
+<p>Qué se hizo. De las 188.078 filas exportadas, 119.214 son movimientos de inventario; el resto son filas de lote
+(68.733), subtotales (130) y un registro de relleno (1). Con los movimientos se construyó una base analítica de
+50 variables, trazable hasta la fila exacta del Excel, que superó los 22 controles de validación. Sobre esa base
+se caracterizaron 48 códigos de producto, que no equivalen necesariamente a 48 vacunas clínicamente distintas:
+diez referencias reúnen el 55,35 % de las salidas facturadas, la regularidad cambia mucho de una referencia a
+otra y hay una señal descriptiva de repetición anual.</p>
+<p>Hallazgo metodológico principal. Las salidas registradas no son una medida directa de consumo. De 341.852
+unidades de salida, 301.429 están registradas en facturas (F003 y F005); las demás provienen sobre todo de T001,
+cuyo patrón es compatible con traslados entre bodegas. Usar todas las salidas agregaría un 13,41 % a la medida
+facturada y llevaría a sobrestimar necesidades. Aun las salidas facturadas son registros observados, no demanda
+real confirmada: una factura no demuestra que la vacuna se aplicó y el informe no registra las solicitudes que
+no pudieron atenderse.</p>
+<p>Qué aporta a la política. El EDA entrega una base trazable, una medida provisional de salidas facturadas por
+referencia y mes y evidencia de que las referencias difieren en volumen, variabilidad y calendario. Esa
+evidencia orienta cómo tratar cada referencia, qué horizonte evaluar y qué datos faltan; no fija cantidades de
+compra.</p>
+<p>Qué falta. Validar con la empresa la medida de consumo observado, homologar códigos y unidades e incorporar
+existencias utilizables, pedidos, recepciones, tiempos de entrega, lotes, vencimientos y costos. Sobre esos
+insumos se compararán pronósticos, se simularán políticas y se evaluará un piloto.</p>
 </div>
 <div class="md"><h3 id="como-leer-este-documento">Cómo leer este documento</h3>
 <p>El texto distingue entre lo que aparece en los archivos (dato observado), lo que se calcula a partir de
 ellos (resultado), la lectura de esos resultados (interpretación), las explicaciones posibles aún no
 verificadas (hipótesis) y lo que debe confirmar la empresa. Las hipótesis y los puntos pendientes se
-señalan de forma explícita donde aparecen.</p>
+señalan de forma explícita donde aparecen. Cada resultado de la Parte III termina con lo que aporta a la
+futura política de compra y con la información adicional que necesita.</p>
 <p>La columna <code>DESCRIPCION</code> contiene nombres de terceros, incluidas personas naturales. No se muestra en ningún
 momento.</p>
 <p>Las celdas de código ejecutan y verifican cada paso. Los detalles de ejecución (intérprete, archivos
@@ -311,7 +367,7 @@ intermedios, huellas SHA-256) se reúnen en el anexo final.</p>
 <tbody>
 <tr>
 <td>I. Problema y datos</td>
-<td>0. Contexto y objetivo · 1. Fuente de datos</td>
+<td>0. Contexto, pregunta y objetivos · 1. Fuente de datos</td>
 </tr>
 <tr>
 <td>II. Construcción y validación de la base analítica (Fase 1)</td>
@@ -323,7 +379,7 @@ intermedios, huellas SHA-256) se reúnen en el anexo final.</p>
 </tr>
 <tr>
 <td>IV. Cierre</td>
-<td>17. Conclusiones: hacia la variable respuesta · Anexo técnico</td>
+<td>17. Conclusiones y ruta hacia la política de compra · Anexo técnico</td>
 </tr>
 </tbody>
 </table></div>
@@ -331,27 +387,76 @@ intermedios, huellas SHA-256) se reúnen en el anexo final.</p>
 <div class="md"><hr/>
 <h1 id="parte-i-el-problema-y-los-datos">Parte I · El problema y los datos</h1>
 </div>
-<div class="md"><h2 id="0-contexto-y-objetivo">0. Contexto y objetivo</h2>
-<p>Infectólogos y Asociados LTDA administra un inventario de vacunas expuesto a dos riesgos opuestos: el
-faltante, cuando no se dispone de una vacuna en el momento en que se requiere, y el exceso, cuando se
-mantienen más unidades de las necesarias y aumenta la probabilidad de vencimiento.</p>
-<p>El proyecto busca usar el histórico de movimientos para apoyar, en etapas posteriores, la estimación de:</p>
+<div class="md"><h2 id="0-contexto-pregunta-y-objetivos">0. Contexto, pregunta y objetivos</h2>
+<p>Infectólogos y Asociados LTDA mantiene un inventario de vacunas expuesto a dos riesgos opuestos: el faltante,
+cuando no se dispone de una referencia en el momento en que se requiere, y el exceso, cuando se mantienen más
+unidades de las necesarias, baja la rotación y aumenta la probabilidad de vencimiento. La decisión que el
+proyecto busca apoyar es concreta y recurrente: qué cantidad de cada referencia comprar y en qué momento.</p>
+<p>Pregunta de investigación. ¿Cómo determinar cuánto y cuándo comprar de cada referencia de vacuna en Infectólogos y Asociados LTDA., a partir de su comportamiento histórico, las existencias utilizables, los tiempos de reposición y los vencimientos, para alcanzar un nivel de abastecimiento acordado y minimizar los costos y las pérdidas de inventario?</p>
+<p>Objetivo general. Diseñar y evaluar una política de compra y reposición por referencia de vacuna que utilice el histórico validado y las condiciones operativas de la empresa para recomendar cantidades y momentos de compra, buscando alcanzar un nivel de abastecimiento acordado y minimizar costos y pérdidas de inventario.</p>
+<p>Objetivos específicos.</p>
 <ol>
-<li>consumo o demanda por vacuna y periodo;</li>
-<li>riesgo de desabastecimiento;</li>
-<li>riesgo de exceso de inventario y de vencimiento;</li>
-<li>stock de seguridad;</li>
-<li>niveles mínimos y máximos;</li>
-<li>puntos de reorden;</li>
-<li>cantidades sugeridas de compra.</li>
+<li>Integrar y validar los movimientos históricos de inventario en una base trazable, definir con la empresa una medida de salidas o consumo observado por referencia y homologar productos y unidades de medida.</li>
+<li>Caracterizar el volumen, la variabilidad, los patrones temporales y los cambios del catálogo por referencia, e incorporar información validada de disponibilidad, compras, recepciones, tiempos de entrega, lotes y vencimientos.</li>
+<li>Comparar métodos de pronóstico y estimación de incertidumbre con métodos sencillos de referencia, mediante evaluación temporal y horizontes coherentes con la reposición de cada vacuna.</li>
+<li>Formular políticas de compra y reposición que consideren existencias utilizables, pedidos pendientes, compromisos, tiempos de entrega, vencimientos, presupuesto y restricciones de presentación y compra.</li>
+<li>Evaluar las políticas frente al procedimiento actual y reglas de referencia mediante simulación histórica y escenarios, considerando abastecimiento, unidades vencidas, costos relevantes e inventario mantenido.</li>
+<li>Implementar una herramienta de apoyo que actualice y muestre las cantidades y momentos de compra sugeridos, sus supuestos y alertas, y evaluar su aplicación mediante un piloto con la empresa.</li>
 </ol>
-<p>El análisis exploratorio es el paso previo a esas estimaciones y no las realiza. Su propósito es caracterizar
-la estructura, la calidad y el comportamiento de los datos, e identificar las variables y los patrones que
-servirán después para modelar la demanda y la gestión del stock.</p>
-<p>Una precaución orienta todo el documento. Una salida registrada puede corresponder a la aplicación de una
-vacuna, pero también a un traslado entre bodegas, un ajuste o una reversión. Por eso las salidas no se
-denominan «demanda real» mientras la empresa no valide qué representan. Separar esos casos es condición
-para construir la variable respuesta.</p>
+<p>El resultado principal es la política de compra y reposición. El pronóstico estimará las necesidades y su
+incertidumbre durante el horizonte de reposición, y la herramienta de software permitirá actualizar y consultar
+las recomendaciones. La aspiración de abastecimiento permanente y ausencia de pérdidas se evaluará con metas
+medibles acordadas con la empresa; no se promete disponibilidad absoluta ni ausencia de pérdidas.</p>
+<h3 id="proposito-de-este-eda">Propósito de este EDA</h3>
+<p>El EDA es la primera etapa del proyecto y corresponde principalmente a los objetivos específicos 1 y 2. Su
+propósito es caracterizar el histórico de cada referencia —volumen, variabilidad, meses sin salidas, patrones de
+calendario y cambios del catálogo— y preparar los datos que la política necesitará para decidir compras. No
+contiene pronósticos, cantidades recomendadas ni ahorros.</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>Objetivo específico</th>
+<th>Qué aporta este EDA</th>
+<th>Qué queda pendiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Base trazable y medida de consumo</td>
+<td>Base validada de 119.214 movimientos y 50 variables; medida provisional S_F (salidas facturadas).</td>
+<td>Validar la medida con la empresa; homologar códigos y unidades.</td>
+</tr>
+<tr>
+<td>2. Caracterización por referencia</td>
+<td>Concentración, variabilidad, meses sin salidas, señal de repetición anual y efecto de los cambios del catálogo.</td>
+<td>Incorporar disponibilidad, compras, recepciones, tiempos de entrega, lotes y vencimientos.</td>
+</tr>
+<tr>
+<td>3. Pronóstico e incertidumbre</td>
+<td>Panel de 48 códigos × 45 meses, con meses incompletos identificados y ventanas comparables entre años.</td>
+<td>Elegir la serie objetivo y comparar métodos con evaluación temporal.</td>
+</tr>
+<tr>
+<td>4 y 5. Políticas y simulación</td>
+<td>Evidencia para tratar cada referencia por separado y alertas de saldo para revisar.</td>
+<td>Existencias utilizables, pedidos, tiempos de entrega, costos y nivel de servicio acordado.</td>
+</tr>
+<tr>
+<td>6. Herramienta y piloto</td>
+<td>Trazabilidad de cada dato hasta su fila de origen y controles reutilizables.</td>
+<td>Integrar las fuentes operativas y evaluar con la empresa.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="distinciones-que-se-mantienen-en-todo-el-documento">Distinciones que se mantienen en todo el documento</h3>
+<ul>
+<li>Las salidas facturadas son registros observados, no demanda real confirmada.</li>
+<li>Los promedios históricos describen el pasado; no son cantidades recomendadas de compra.</li>
+<li>Los 48 códigos no equivalen necesariamente a 48 vacunas clínicamente distintas.</li>
+<li>Un saldo cero o negativo no demuestra por sí solo desabastecimiento.</li>
+<li>Los cuatro meses incompletos siguen identificados y no se imputan.</li>
+<li>Las cantidades de compra, los ahorros y la reducción de vencimientos todavía no se han calculado ni demostrado.</li>
+</ul>
 </div>
 <div class="md"><p>Soporte técnico. La celda siguiente carga las librerías, ubica las rutas del proyecto y fija los valores
 de referencia contra los que se valida cada paso: número de filas, totales anuales de entradas y salidas y
@@ -1405,7 +1510,8 @@ resumen.</p>
 </tbody>
 </table>
 </div></div><pre class="salida">Sección 4: 6 de 6 controles OK.</pre></div>
-<div class="md"><p>La base cubre del 10 de enero de 2023 al 17 de septiembre de 2026 e incluye 48 productos. El primer
+<div class="md"><p>La base cubre del 10 de enero de 2023 al 17 de septiembre de 2026 e incluye 48 códigos de producto,
+que no equivalen necesariamente a 48 vacunas clínicamente distintas. El primer
 movimiento de cada año aparece entre el 5 y el 10 de enero; esa fecha no implica que no hubiera necesidades
 en los días anteriores.</p>
 <p>Tres rasgos del informe condicionan la lectura de las cantidades:</p>
@@ -1416,7 +1522,7 @@ en los días anteriores.</p>
 </ul>
 </div>
 <div class="md"><h2 id="5-variables-derivadas-paso-4">5. Variables derivadas (Paso 4)</h2>
-<p>Para analizar el comportamiento por vacuna, por tipo de documento y en el tiempo se derivaron 12 variables a
+<p>Para analizar el comportamiento por referencia, por tipo de documento y en el tiempo se derivaron 12 variables a
 partir de los campos originales, sin modificarlos. Antes se verificó el patrón en el 100 % de las filas:
 <code>PRODUCTO</code> = <code>999-9999-999999</code> + espacio + nombre, y <code>DOCUMENTO</code> = <code>A999-999999999-999</code>. Después se comprobó
 que <code>PRODUCTO</code> y <code>DOCUMENTO</code> se reconstruyen exactamente a partir de sus partes.</p>
@@ -1434,7 +1540,7 @@ que <code>PRODUCTO</code> y <code>DOCUMENTO</code> se reconstruyen exactamente a
 <td>Producto</td>
 <td><code>cod_producto</code>, <code>nombre_producto</code></td>
 <td><code>PRODUCTO</code></td>
-<td>Identificar cada vacuna con un código estable y una etiqueta legible; unidad de agregación de la futura serie por vacuna.</td>
+<td>Identificar cada referencia con un código estable y una etiqueta legible; unidad de agregación de la futura serie por referencia.</td>
 </tr>
 <tr>
 <td>Documento</td>
@@ -3029,16 +3135,17 @@ prefijos de documento tampoco se codificaron como tipos de negocio.</p>
 </tbody>
 </table></div>
 <p>Con la base validada, la pregunta cambia: ya no es si los datos están bien construidos, sino qué muestran los
-movimientos y hasta qué punto las salidas pueden usarse como aproximación al uso de las vacunas.</p>
+movimientos de cada referencia y qué parte de ellos puede alimentar la decisión de compra.</p>
 </div>
 <div class="md"><hr/>
 <h1 id="parte-iii-exploracion-de-los-movimientos">Parte III · Exploración de los movimientos</h1>
 </div>
 <div class="md"><h2 id="10-de-las-salidas-registradas-a-una-medida-observable">10. De las salidas registradas a una medida observable</h2>
-<p>La base contiene todos los movimientos, pero no todos representan el mismo fenómeno. Esta parte examina qué
-productos concentran las salidas, cómo varían en el tiempo y qué cautelas exige pasar de un registro
-contable a una medida de consumo. Es una evaluación exploratoria: la definición empresarial de la variable
-respuesta sigue pendiente.</p>
+<p>Una política de compra necesita saber, para cada referencia, cuánto sale, con qué regularidad, en qué meses
+y con qué cambios del catálogo. Esta parte examina esas características en el histórico y las cautelas que
+exige pasar de un registro contable a una medida de consumo. Es una evaluación exploratoria: la definición
+empresarial de la medida de consumo observado sigue pendiente. Cada resultado termina con lo que aporta a la
+futura política y con la información adicional que necesita.</p>
 <p>Medidas utilizadas. De acuerdo con la información suministrada por la empresa, los documentos con prefijo
 F corresponden a facturas. A partir de ello se definen dos medidas por producto y mes, calculadas sobre una
 copia de trabajo sin nombres de terceros:</p>
@@ -3324,6 +3431,8 @@ unidad del reporte y no se convierten automáticamente a dosis.</p>
 que mueven unidades con filas que solo mueven valor. Y el promedio de <code>ACUM CANTIDAD</code> por fila no es un
 inventario promedio diario, porque los días con más registros pesan más; no se usa para calcular cobertura ni
 política de inventario.</p>
+<p><em>Para la política de compra.</em> Los campos de producto, documento, fecha, bodega y cantidades permiten construir series por referencia. La unidad registrada, en cambio, no permite todavía expresar las compras en dosis o presentaciones.</p>
+<p><em>Información adicional necesaria.</em> Unidad física de compra, presentación y dosis por unidad, y equivalencias entre códigos confirmadas por la empresa.</p>
 </div>
 <div class="md"><h2 id="11-documentos-y-construccion-de-medidas-exploratorias">11. Documentos y construcción de medidas exploratorias</h2>
 <p>¿Cuánto cambia la lectura del inventario cuando se distinguen los tipos de documento? Se suman las unidades
@@ -3597,6 +3706,8 @@ apoya en documentación general y no ha sido confirmada para J002. El límite de
 septiembre de 2026: la vacuna contra hepatitis B vial 20 mcg presenta S_FJ = −25 (209 salidas F y
 234 entradas J), en un mes que además está incompleto. No se trata de un consumo negativo, sino de una
 consecuencia de restar las entradas J002 por mes de registro.</p>
+<p><em>Para la política de compra.</em> S_F es la medida provisional de necesidades históricas con la que se compararán pronósticos y se simularán políticas. Usar todas las salidas sobrestimaría esas necesidades en 13,41 % y podría inducir compras excesivas; S_FJ muestra cuánto cambiaría el resultado si J002 se confirmara como devolución.</p>
+<p><em>Información adicional necesaria.</em> Confirmar si F003 y F005 corresponden a aplicación o despacho, vincular cada J002 con la factura que revierte y confirmar el significado de T001, L017 y L018.</p>
 </div>
 <div class="md"><h2 id="12-productos-concentracion-variabilidad-y-meses-sin-salidas-">12. Productos: concentración, variabilidad y meses sin salidas facturadas</h2>
 <p>¿Qué referencias concentran el volumen facturado y cuáles se comportan de forma irregular? Se construyó un
@@ -3980,6 +4091,10 @@ Alertas IQR: 88</pre><figure aria-labelledby="titulo-grafico-1" class="figura gr
 <div aria-describedby="nota-grafico-1" aria-label="Diez referencias concentran las salidas facturadas. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-1" role="img"></div>
 <img alt="Diez referencias concentran las salidas facturadas" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_01.png"/>
 <p class="grafico-nota" id="nota-grafico-1">Unidades en F003 + F005 · todo el periodo exportado. La priorización es por unidades, no por valor económico.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>Indica qué referencias concentran el volumen facturado y conviene validar primero con la empresa e incluir en el piloto.</p>
+<p><span>Información que falta</span>Valor económico y homologación de códigos: la concentración en unidades no es una clasificación ABC y 48 códigos no son necesariamente 48 vacunas distintas.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Concentración" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Diez referencias concentran las salidas facturadas</caption><thead><tr><th scope="col">Referencia</th><th scope="col">Código</th><th scope="col">Unidades S_F</th><th scope="col">% de S_F</th></tr></thead><tbody><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>32.462</td><td>10,77</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>22.814</td><td>7,57</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>19.937</td><td>6,61</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>18.474</td><td>6,13</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>17.089</td><td>5,67</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>13.516</td><td>4,48</td></tr><tr><th scope="row">HEXAXIM</th><td>001-0001-000002</td><td>12.496</td><td>4,15</td></tr><tr><th scope="row">QDENGA</th><td>003-0014-000001</td><td>10.646</td><td>3,53</td></tr><tr><th scope="row">VAXIGRIP ECOPETROL</th><td>002-0006-000015</td><td>10.543</td><td>3,50</td></tr><tr><th scope="row">NIMENRIX 1X0.50ML VIAL</th><td>003-0004-000006</td><td>8.862</td><td>2,94</td></tr></tbody></table></div></details>
 </figure><figure aria-labelledby="titulo-grafico-2" class="figura grafico-card" data-chart="2" id="figura-02">
 <figcaption class="grafico-cabecera">
@@ -3992,6 +4107,10 @@ Alertas IQR: 88</pre><figure aria-labelledby="titulo-grafico-1" class="figura gr
 <div aria-describedby="nota-grafico-2" aria-label="La regularidad cambia entre referencias. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-2" role="img"></div>
 <img alt="La regularidad cambia entre referencias" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_02.png"/>
 <p class="grafico-nota" id="nota-grafico-2">Referencias con al menos 12 meses completos elegibles. El tamaño de la burbuja representa el volumen total S_F.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>Separa las referencias estables, que podrían gestionarse con reglas sencillas, de las irregulares, que requieren más protección o métodos específicos.</p>
+<p><span>Información que falta</span>Disponibilidad en los meses sin salida F y calendario de campañas: un mes sin salida facturada no prueba ausencia de necesidad.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Regularidad" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>La regularidad cambia entre referencias</caption><thead><tr><th scope="col">Referencia</th><th scope="col">Código</th><th scope="col">% meses sin salida F</th><th scope="col">CV</th><th scope="col">Meses elegibles</th><th scope="col">Unidades S_F</th></tr></thead><tbody><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>21,05</td><td>1,202</td><td>38</td><td>32.462</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>26,83</td><td>1,503</td><td>41</td><td>22.814</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>0,00</td><td>0,491</td><td>41</td><td>19.937</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>7,32</td><td>0,948</td><td>41</td><td>18.474</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>0,00</td><td>0,463</td><td>41</td><td>17.089</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>0,00</td><td>0,645</td><td>41</td><td>13.516</td></tr><tr><th scope="row">HEXAXIM</th><td>001-0001-000002</td><td>2,44</td><td>0,419</td><td>41</td><td>12.496</td></tr><tr><th scope="row">QDENGA</th><td>003-0014-000001</td><td>0,00</td><td>0,481</td><td>25</td><td>10.646</td></tr><tr><th scope="row">VAXIGRIP ECOPETROL</th><td>002-0006-000015</td><td>35,14</td><td>1,449</td><td>37</td><td>10.543</td></tr><tr><th scope="row">NIMENRIX 1X0.50ML VIAL</th><td>003-0004-000006</td><td>0,00</td><td>0,473</td><td>41</td><td>8.862</td></tr><tr><th scope="row">PREVENAR INSTITUCIONAL</th><td>001-0006-000001</td><td>0,00</td><td>0,560</td><td>41</td><td>8.691</td></tr><tr><th scope="row">PNEUMOVAX</th><td>003-0005-000002</td><td>0,00</td><td>0,677</td><td>41</td><td>8.512</td></tr><tr><th scope="row">MENACTRA</th><td>003-0004-000004</td><td>15,38</td><td>0,692</td><td>39</td><td>7.992</td></tr><tr><th scope="row">STAMARIL</th><td>003-0003-000001</td><td>7,32</td><td>0,667</td><td>41</td><td>7.965</td></tr><tr><th scope="row">ROTATEQ</th><td>001-0007-000001</td><td>0,00</td><td>0,188</td><td>41</td><td>7.834</td></tr><tr><th scope="row">PREVENAR PEDIATRICOS Y ADULTOS</th><td>003-0005-000014</td><td>0,00</td><td>0,663</td><td>41</td><td>7.482</td></tr><tr><th scope="row">ELOVAC-B VACUNA HEPATITIS B</th><td>003-0006-000006</td><td>0,00</td><td>0,601</td><td>13</td><td>7.280</td></tr><tr><th scope="row">AVAXIM 160</th><td>002-0004-000001</td><td>0,00</td><td>0,728</td><td>41</td><td>7.028</td></tr><tr><th scope="row">ADACEL</th><td>003-0002-000002</td><td>0,00</td><td>0,460</td><td>41</td><td>6.708</td></tr><tr><th scope="row">VAXNEUVANCE</th><td>003-0005-000015</td><td>0,00</td><td>0,307</td><td>22</td><td>6.591</td></tr><tr><th scope="row">BEXSERO</th><td>003-0004-000007</td><td>0,00</td><td>0,388</td><td>24</td><td>6.484</td></tr><tr><th scope="row">GARDASIL NONAVALENTE</th><td>003-0009-000003</td><td>0,00</td><td>0,272</td><td>41</td><td>6.387</td></tr><tr><th scope="row">MENVEO</th><td>003-0004-000005</td><td>0,00</td><td>1,271</td><td>41</td><td>5.785</td></tr><tr><th scope="row">PROQUAD 0.5ML</th><td>003-0011-000003</td><td>0,00</td><td>0,237</td><td>41</td><td>4.412</td></tr><tr><th scope="row">TWINRIX</th><td>002-0005-000001</td><td>0,00</td><td>1,078</td><td>41</td><td>3.988</td></tr><tr><th scope="row">AVAXIM 80</th><td>001-0004-000001</td><td>0,00</td><td>0,328</td><td>39</td><td>3.663</td></tr><tr><th scope="row">BOOSTRIX</th><td>003-0002-000001</td><td>0,00</td><td>0,734</td><td>41</td><td>3.367</td></tr><tr><th scope="row">INFANRIX HEXA</th><td>001-0001-000001</td><td>0,00</td><td>0,935</td><td>41</td><td>3.310</td></tr><tr><th scope="row">PENTAXIM</th><td>001-0002-000002</td><td>0,00</td><td>0,392</td><td>41</td><td>2.932</td></tr><tr><th scope="row">TETAVAX-JER PRELLENADA</th><td>002-0007-000003</td><td>29,27</td><td>1,364</td><td>41</td><td>2.816</td></tr><tr><th scope="row">TETRAXIM</th><td>001-0003-000001</td><td>0,00</td><td>0,338</td><td>41</td><td>1.880</td></tr><tr><th scope="row">HAVRIX 720</th><td>001-0004-000002</td><td>0,00</td><td>0,618</td><td>41</td><td>1.614</td></tr><tr><th scope="row">TYPHIM VI</th><td>002-0002-000001</td><td>5,13</td><td>1,573</td><td>39</td><td>1.516</td></tr><tr><th scope="row">HAVRIX 1440</th><td>002-0004-000002</td><td>4,88</td><td>0,972</td><td>41</td><td>1.318</td></tr><tr><th scope="row">TYPHIM VI ECOPETROL</th><td>002-0002-000002</td><td>65,71</td><td>1,770</td><td>35</td><td>1.195</td></tr><tr><th scope="row">SHINGRIX</th><td>002-0008-000002</td><td>0,00</td><td>0,584</td><td>23</td><td>1.084</td></tr><tr><th scope="row">AVAXIM 160U ECOPETROL</th><td>002-0004-000003</td><td>68,57</td><td>2,124</td><td>35</td><td>974</td></tr><tr><th scope="row">TETAVAX ECOPETROL</th><td>002-0007-000007</td><td>82,86</td><td>2,859</td><td>35</td><td>640</td></tr><tr><th scope="row">INFANRIX</th><td>001-0002-000001</td><td>0,00</td><td>0,852</td><td>33</td><td>624</td></tr><tr><th scope="row">VERORAB</th><td>003-0001-000002</td><td>21,95</td><td>0,839</td><td>41</td><td>452</td></tr><tr><th scope="row">STAMARILL ECOPETROL</th><td>003-0003-000002</td><td>73,53</td><td>3,065</td><td>34</td><td>414</td></tr><tr><th scope="row">GARDASIL 120UG</th><td>003-0009-000002</td><td>39,13</td><td>2,289</td><td>23</td><td>97</td></tr><tr><th scope="row">SYNFLORIX</th><td>001-0006-000002</td><td>78,57</td><td>2,073</td><td>28</td><td>7</td></tr></tbody></table></div></details>
 </figure></div>
 <div class="md"><p>Lectura. Las cinco referencias principales reúnen el 36,75 % de S_F y las diez primeras, el 55,35 %; se
@@ -4004,6 +4123,8 @@ ignoraría estas diferencias.</p>
 <p>De las 1.615 celdas producto–mes elegibles, 205 no registran salidas F: son meses sin salidas facturadas, no
 prueba de ausencia de demanda. Se marcaron 88 valores extremos, que se conservan; una campaña o un cambio de
 registro puede producirlos.</p>
+<p><em>Para la política de compra.</em> Estas diferencias sustentan una política por referencia y no una regla única. Las referencias regulares podrían manejarse con reglas sencillas; las de alta variabilidad o con meses sin salidas requieren más protección o métodos específicos. La concentración ayuda a priorizar la validación y el piloto: 43 códigos tienen al menos 12 meses elegibles. Las medias y medianas describen el histórico; no son cantidades de compra, porque la cantidad depende también de las existencias utilizables, los pedidos pendientes, el tiempo de entrega y la vida útil.</p>
+<p><em>Información adicional necesaria.</em> Homologación de códigos (los 48 códigos no equivalen necesariamente a 48 vacunas distintas), disponibilidad en los meses sin salidas y calendario de campañas y contratos.</p>
 </div>
 <div class="md"><h2 id="13-evolucion-temporal-y-comparaciones-con-igual-cobertura">13. Evolución temporal y comparaciones con igual cobertura</h2>
 <p>¿Cambia el volumen entre años y se repiten meses de mayor actividad? Como los años no tienen la misma
@@ -4180,6 +4301,10 @@ el mapa de salidas facturadas por referencia y mes, y las correlaciones por reza
 <div aria-describedby="nota-grafico-3" aria-label="Evolución mensual: volumen registrado y escenario de descuento. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-3" role="img"></div>
 <img alt="Evolución mensual: volumen registrado y escenario de descuento" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_03.png"/>
 <p class="grafico-nota" id="nota-grafico-3">Las bandas grises señalan exportaciones incompletas. S_FJ es el escenario de descuento de J002; no una medida validada de consumo.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>Muestra el nivel y los picos del volumen agregado que la política deberá cubrir, con los meses incompletos identificados.</p>
+<p><span>Información que falta</span>Exportaciones completas de los meses parciales y una medida de consumo validada: S_F es un registro observado, no demanda real.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Evolución mensual" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Evolución mensual: volumen registrado y escenario de descuento</caption><thead><tr><th scope="col">Mes</th><th scope="col">S_F</th><th scope="col">S_FJ</th><th scope="col">Cobertura</th></tr></thead><tbody><tr><th scope="row">2023-01</th><td>4.404</td><td>4.286</td><td>Completo</td></tr><tr><th scope="row">2023-02</th><td>2.688</td><td>2.506</td><td>Completo</td></tr><tr><th scope="row">2023-03</th><td>3.285</td><td>3.225</td><td>Completo</td></tr><tr><th scope="row">2023-04</th><td>4.788</td><td>4.763</td><td>Completo</td></tr><tr><th scope="row">2023-05</th><td>11.083</td><td>10.102</td><td>Completo</td></tr><tr><th scope="row">2023-06</th><td>6.167</td><td>6.066</td><td>Completo</td></tr><tr><th scope="row">2023-07</th><td>7.779</td><td>7.130</td><td>Completo</td></tr><tr><th scope="row">2023-08</th><td>5.150</td><td>5.078</td><td>Completo</td></tr><tr><th scope="row">2023-09</th><td>5.941</td><td>5.936</td><td>Completo</td></tr><tr><th scope="row">2023-10</th><td>5.473</td><td>5.416</td><td>Completo</td></tr><tr><th scope="row">2023-11</th><td>4.609</td><td>4.241</td><td>Completo</td></tr><tr><th scope="row">2023-12</th><td>3.710</td><td>3.572</td><td>Incompleto</td></tr><tr><th scope="row">2024-01</th><td>5.849</td><td>5.656</td><td>Completo</td></tr><tr><th scope="row">2024-02</th><td>5.260</td><td>5.028</td><td>Completo</td></tr><tr><th scope="row">2024-03</th><td>4.976</td><td>4.923</td><td>Completo</td></tr><tr><th scope="row">2024-04</th><td>7.239</td><td>6.579</td><td>Completo</td></tr><tr><th scope="row">2024-05</th><td>9.295</td><td>8.993</td><td>Completo</td></tr><tr><th scope="row">2024-06</th><td>11.545</td><td>11.231</td><td>Completo</td></tr><tr><th scope="row">2024-07</th><td>8.459</td><td>8.157</td><td>Completo</td></tr><tr><th scope="row">2024-08</th><td>8.815</td><td>8.689</td><td>Completo</td></tr><tr><th scope="row">2024-09</th><td>7.392</td><td>6.845</td><td>Completo</td></tr><tr><th scope="row">2024-10</th><td>5.421</td><td>5.274</td><td>Completo</td></tr><tr><th scope="row">2024-11</th><td>6.179</td><td>5.988</td><td>Completo</td></tr><tr><th scope="row">2024-12</th><td>4.927</td><td>4.822</td><td>Incompleto</td></tr><tr><th scope="row">2025-01</th><td>5.604</td><td>5.269</td><td>Completo</td></tr><tr><th scope="row">2025-02</th><td>5.091</td><td>5.038</td><td>Completo</td></tr><tr><th scope="row">2025-03</th><td>4.824</td><td>4.265</td><td>Completo</td></tr><tr><th scope="row">2025-04</th><td>6.538</td><td>6.470</td><td>Completo</td></tr><tr><th scope="row">2025-05</th><td>10.581</td><td>10.440</td><td>Completo</td></tr><tr><th scope="row">2025-06</th><td>8.552</td><td>8.484</td><td>Completo</td></tr><tr><th scope="row">2025-07</th><td>8.385</td><td>8.180</td><td>Completo</td></tr><tr><th scope="row">2025-08</th><td>6.518</td><td>6.483</td><td>Completo</td></tr><tr><th scope="row">2025-09</th><td>7.872</td><td>7.829</td><td>Completo</td></tr><tr><th scope="row">2025-10</th><td>7.810</td><td>7.688</td><td>Completo</td></tr><tr><th scope="row">2025-11</th><td>5.090</td><td>4.959</td><td>Completo</td></tr><tr><th scope="row">2025-12</th><td>6.536</td><td>6.185</td><td>Incompleto</td></tr><tr><th scope="row">2026-01</th><td>7.960</td><td>7.482</td><td>Completo</td></tr><tr><th scope="row">2026-02</th><td>5.766</td><td>5.716</td><td>Completo</td></tr><tr><th scope="row">2026-03</th><td>5.948</td><td>5.809</td><td>Completo</td></tr><tr><th scope="row">2026-04</th><td>6.550</td><td>6.428</td><td>Completo</td></tr><tr><th scope="row">2026-05</th><td>10.703</td><td>9.956</td><td>Completo</td></tr><tr><th scope="row">2026-06</th><td>8.423</td><td>8.270</td><td>Completo</td></tr><tr><th scope="row">2026-07</th><td>9.849</td><td>9.675</td><td>Completo</td></tr><tr><th scope="row">2026-08</th><td>7.265</td><td>6.832</td><td>Completo</td></tr><tr><th scope="row">2026-09</th><td>5.130</td><td>4.705</td><td>Incompleto</td></tr></tbody></table></div></details>
 </figure><figure aria-labelledby="titulo-grafico-4" class="figura grafico-card" data-chart="4" id="figura-04">
 <figcaption class="grafico-cabecera">
@@ -4192,6 +4317,10 @@ el mapa de salidas facturadas por referencia y mes, y las correlaciones por reza
 <div aria-describedby="nota-grafico-4" aria-label="Meses de mayor salida: comparación por año. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-4" role="img"></div>
 <img alt="Meses de mayor salida: comparación por año" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_04.png"/>
 <p class="grafico-nota" id="nota-grafico-4">Solo meses completos. Los meses incompletos se conservan como huecos y no se imputan.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>Señala los meses de mayor salida que una revisión periódica de compras debería anticipar.</p>
+<p><span>Información que falta</span>Tiempos de entrega por proveedor, para saber con cuánta anticipación pedir antes de cada pico.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Perfil por año" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Meses de mayor salida: comparación por año</caption><thead><tr><th scope="col">Mes</th><th scope="col">S_F · meses completos</th><th scope="col">Cobertura</th></tr></thead><tbody><tr><th scope="row">2023-01</th><td>4.404</td><td>Completo</td></tr><tr><th scope="row">2023-02</th><td>2.688</td><td>Completo</td></tr><tr><th scope="row">2023-03</th><td>3.285</td><td>Completo</td></tr><tr><th scope="row">2023-04</th><td>4.788</td><td>Completo</td></tr><tr><th scope="row">2023-05</th><td>11.083</td><td>Completo</td></tr><tr><th scope="row">2023-06</th><td>6.167</td><td>Completo</td></tr><tr><th scope="row">2023-07</th><td>7.779</td><td>Completo</td></tr><tr><th scope="row">2023-08</th><td>5.150</td><td>Completo</td></tr><tr><th scope="row">2023-09</th><td>5.941</td><td>Completo</td></tr><tr><th scope="row">2023-10</th><td>5.473</td><td>Completo</td></tr><tr><th scope="row">2023-11</th><td>4.609</td><td>Completo</td></tr><tr><th scope="row">2023-12</th><td>Excluido</td><td>Incompleto</td></tr><tr><th scope="row">2024-01</th><td>5.849</td><td>Completo</td></tr><tr><th scope="row">2024-02</th><td>5.260</td><td>Completo</td></tr><tr><th scope="row">2024-03</th><td>4.976</td><td>Completo</td></tr><tr><th scope="row">2024-04</th><td>7.239</td><td>Completo</td></tr><tr><th scope="row">2024-05</th><td>9.295</td><td>Completo</td></tr><tr><th scope="row">2024-06</th><td>11.545</td><td>Completo</td></tr><tr><th scope="row">2024-07</th><td>8.459</td><td>Completo</td></tr><tr><th scope="row">2024-08</th><td>8.815</td><td>Completo</td></tr><tr><th scope="row">2024-09</th><td>7.392</td><td>Completo</td></tr><tr><th scope="row">2024-10</th><td>5.421</td><td>Completo</td></tr><tr><th scope="row">2024-11</th><td>6.179</td><td>Completo</td></tr><tr><th scope="row">2024-12</th><td>Excluido</td><td>Incompleto</td></tr><tr><th scope="row">2025-01</th><td>5.604</td><td>Completo</td></tr><tr><th scope="row">2025-02</th><td>5.091</td><td>Completo</td></tr><tr><th scope="row">2025-03</th><td>4.824</td><td>Completo</td></tr><tr><th scope="row">2025-04</th><td>6.538</td><td>Completo</td></tr><tr><th scope="row">2025-05</th><td>10.581</td><td>Completo</td></tr><tr><th scope="row">2025-06</th><td>8.552</td><td>Completo</td></tr><tr><th scope="row">2025-07</th><td>8.385</td><td>Completo</td></tr><tr><th scope="row">2025-08</th><td>6.518</td><td>Completo</td></tr><tr><th scope="row">2025-09</th><td>7.872</td><td>Completo</td></tr><tr><th scope="row">2025-10</th><td>7.810</td><td>Completo</td></tr><tr><th scope="row">2025-11</th><td>5.090</td><td>Completo</td></tr><tr><th scope="row">2025-12</th><td>Excluido</td><td>Incompleto</td></tr><tr><th scope="row">2026-01</th><td>7.960</td><td>Completo</td></tr><tr><th scope="row">2026-02</th><td>5.766</td><td>Completo</td></tr><tr><th scope="row">2026-03</th><td>5.948</td><td>Completo</td></tr><tr><th scope="row">2026-04</th><td>6.550</td><td>Completo</td></tr><tr><th scope="row">2026-05</th><td>10.703</td><td>Completo</td></tr><tr><th scope="row">2026-06</th><td>8.423</td><td>Completo</td></tr><tr><th scope="row">2026-07</th><td>9.849</td><td>Completo</td></tr><tr><th scope="row">2026-08</th><td>7.265</td><td>Completo</td></tr><tr><th scope="row">2026-09</th><td>Excluido</td><td>Incompleto</td></tr></tbody></table></div></details>
 </figure><figure aria-labelledby="titulo-grafico-5" class="figura grafico-card" data-chart="5" id="figura-05">
 <figcaption class="grafico-cabecera">
@@ -4204,6 +4333,10 @@ el mapa de salidas facturadas por referencia y mes, y las correlaciones por reza
 <div aria-describedby="nota-grafico-5" aria-label="Salidas facturadas por referencia y mes. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-5" role="img"></div>
 <img alt="Salidas facturadas por referencia y mes" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_05.png"/>
 <p class="grafico-nota" id="nota-grafico-5">Color: log(1 + unidades). Blanco: cero salidas F; gris: mes no elegible. El gris nunca representa cero.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>Muestra por referencia cuándo hay salidas, cuándo no y desde cuándo se registra cada código; ayuda a decidir qué referencias entran primero a la política y al piloto.</p>
+<p><span>Información que falta</span>Vigencia del catálogo, sustituciones y equivalencias entre códigos confirmadas por la empresa.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Mapa de calor" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Salidas facturadas por referencia y mes</caption><thead><tr><th scope="col">Referencia / código</th><th scope="col">2023-01</th><th scope="col">2023-02</th><th scope="col">2023-03</th><th scope="col">2023-04</th><th scope="col">2023-05</th><th scope="col">2023-06</th><th scope="col">2023-07</th><th scope="col">2023-08</th><th scope="col">2023-09</th><th scope="col">2023-10</th><th scope="col">2023-11</th><th scope="col">2023-12</th><th scope="col">2024-01</th><th scope="col">2024-02</th><th scope="col">2024-03</th><th scope="col">2024-04</th><th scope="col">2024-05</th><th scope="col">2024-06</th><th scope="col">2024-07</th><th scope="col">2024-08</th><th scope="col">2024-09</th><th scope="col">2024-10</th><th scope="col">2024-11</th><th scope="col">2024-12</th><th scope="col">2025-01</th><th scope="col">2025-02</th><th scope="col">2025-03</th><th scope="col">2025-04</th><th scope="col">2025-05</th><th scope="col">2025-06</th><th scope="col">2025-07</th><th scope="col">2025-08</th><th scope="col">2025-09</th><th scope="col">2025-10</th><th scope="col">2025-11</th><th scope="col">2025-12</th><th scope="col">2026-01</th><th scope="col">2026-02</th><th scope="col">2026-03</th><th scope="col">2026-04</th><th scope="col">2026-05</th><th scope="col">2026-06</th><th scope="col">2026-07</th><th scope="col">2026-08</th><th scope="col">2026-09</th></tr></thead><tbody><tr><th scope="row">VAXIGRIP TETRA [002-0006-000001]</th><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>1.300</td><td>3.203</td><td>1.157</td><td>2.178</td><td>687</td><td>424</td><td>701</td><td>656</td><td>No elegible</td><td>8</td><td>8</td><td>0</td><td>258</td><td>1.782</td><td>3.865</td><td>1.447</td><td>2.323</td><td>155</td><td>42</td><td>117</td><td>No elegible</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>427</td><td>910</td><td>825</td><td>1.156</td><td>778</td><td>322</td><td>No elegible</td><td>28</td><td>251</td><td>0</td><td>0</td><td>2.583</td><td>1.590</td><td>1.276</td><td>334</td><td>No elegible</td></tr><tr><th scope="row">INFLUVAC TETRA [002-0006-000014]</th><td>83</td><td>17</td><td>0</td><td>117</td><td>643</td><td>676</td><td>405</td><td>315</td><td>431</td><td>408</td><td>164</td><td>No elegible</td><td>2</td><td>0</td><td>0</td><td>2.699</td><td>1.139</td><td>1.401</td><td>872</td><td>351</td><td>0</td><td>0</td><td>606</td><td>No elegible</td><td>7</td><td>0</td><td>0</td><td>1.470</td><td>3.974</td><td>1.982</td><td>1.196</td><td>662</td><td>707</td><td>543</td><td>256</td><td>No elegible</td><td>25</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>699</td><td>356</td><td>No elegible</td></tr><tr><th scope="row">VARIVAX [003-0008-000003]</th><td>377</td><td>91</td><td>166</td><td>114</td><td>230</td><td>257</td><td>427</td><td>296</td><td>162</td><td>116</td><td>208</td><td>No elegible</td><td>480</td><td>437</td><td>328</td><td>460</td><td>544</td><td>737</td><td>879</td><td>543</td><td>725</td><td>508</td><td>382</td><td>No elegible</td><td>839</td><td>664</td><td>483</td><td>117</td><td>594</td><td>357</td><td>504</td><td>417</td><td>452</td><td>335</td><td>265</td><td>No elegible</td><td>933</td><td>466</td><td>480</td><td>796</td><td>432</td><td>556</td><td>766</td><td>693</td><td>No elegible</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG [003-0006-000004]</th><td>663</td><td>363</td><td>551</td><td>455</td><td>1.376</td><td>482</td><td>962</td><td>571</td><td>214</td><td>767</td><td>125</td><td>No elegible</td><td>1.393</td><td>670</td><td>1.015</td><td>565</td><td>459</td><td>1.352</td><td>174</td><td>670</td><td>1.067</td><td>457</td><td>404</td><td>No elegible</td><td>3</td><td>0</td><td>0</td><td>392</td><td>430</td><td>14</td><td>1</td><td>147</td><td>4</td><td>3</td><td>0</td><td>No elegible</td><td>6</td><td>2</td><td>2</td><td>93</td><td>350</td><td>790</td><td>313</td><td>287</td><td>No elegible</td></tr><tr><th scope="row">PRIORIX MMR [003-0007-000001]</th><td>403</td><td>257</td><td>245</td><td>194</td><td>249</td><td>331</td><td>356</td><td>297</td><td>200</td><td>142</td><td>302</td><td>No elegible</td><td>321</td><td>536</td><td>375</td><td>350</td><td>407</td><td>367</td><td>299</td><td>412</td><td>333</td><td>395</td><td>230</td><td>No elegible</td><td>291</td><td>310</td><td>219</td><td>199</td><td>151</td><td>313</td><td>511</td><td>216</td><td>429</td><td>382</td><td>385</td><td>No elegible</td><td>876</td><td>594</td><td>747</td><td>585</td><td>423</td><td>801</td><td>760</td><td>615</td><td>No elegible</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA [002-0007-000006]</th><td>173</td><td>179</td><td>78</td><td>324</td><td>100</td><td>35</td><td>382</td><td>97</td><td>218</td><td>154</td><td>172</td><td>No elegible</td><td>365</td><td>288</td><td>188</td><td>48</td><td>161</td><td>238</td><td>352</td><td>217</td><td>932</td><td>138</td><td>539</td><td>No elegible</td><td>184</td><td>345</td><td>867</td><td>311</td><td>587</td><td>274</td><td>434</td><td>459</td><td>411</td><td>565</td><td>277</td><td>No elegible</td><td>230</td><td>243</td><td>316</td><td>731</td><td>369</td><td>371</td><td>261</td><td>217</td><td>No elegible</td></tr><tr><th scope="row">HEXAXIM [001-0001-000002]</th><td>229</td><td>182</td><td>232</td><td>183</td><td>204</td><td>230</td><td>244</td><td>198</td><td>254</td><td>296</td><td>254</td><td>No elegible</td><td>242</td><td>310</td><td>227</td><td>283</td><td>341</td><td>274</td><td>284</td><td>264</td><td>233</td><td>283</td><td>251</td><td>No elegible</td><td>327</td><td>275</td><td>342</td><td>308</td><td>267</td><td>8</td><td>3</td><td>0</td><td>181</td><td>315</td><td>249</td><td>No elegible</td><td>388</td><td>380</td><td>410</td><td>313</td><td>581</td><td>393</td><td>522</td><td>430</td><td>No elegible</td></tr><tr><th scope="row">QDENGA [003-0014-000001]</th><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>73</td><td>153</td><td>153</td><td>260</td><td>468</td><td>202</td><td>No elegible</td><td>857</td><td>512</td><td>314</td><td>401</td><td>481</td><td>372</td><td>547</td><td>299</td><td>298</td><td>283</td><td>793</td><td>No elegible</td><td>414</td><td>464</td><td>414</td><td>295</td><td>357</td><td>264</td><td>341</td><td>291</td><td>No elegible</td></tr><tr><th scope="row">VAXIGRIP ECOPETROL [002-0006-000015]</th><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>No elegible</td><td>1.079</td><td>755</td><td>90</td><td>134</td><td>1.177</td><td>45</td><td>0</td><td>No elegible</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1.247</td><td>447</td><td>226</td><td>304</td><td>64</td><td>6</td><td>190</td><td>No elegible</td><td>4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1.000</td><td>356</td><td>425</td><td>838</td><td>60</td><td>4</td><td>No elegible</td><td>64</td><td>0</td><td>0</td><td>0</td><td>968</td><td>0</td><td>995</td><td>1</td><td>No elegible</td></tr><tr><th scope="row">NIMENRIX 1X0.50ML VIAL [003-0004-000006]</th><td>96</td><td>91</td><td>117</td><td>108</td><td>152</td><td>112</td><td>134</td><td>165</td><td>145</td><td>181</td><td>98</td><td>No elegible</td><td>179</td><td>178</td><td>199</td><td>207</td><td>174</td><td>133</td><td>203</td><td>170</td><td>197</td><td>193</td><td>163</td><td>No elegible</td><td>241</td><td>182</td><td>204</td><td>186</td><td>230</td><td>156</td><td>194</td><td>216</td><td>151</td><td>260</td><td>95</td><td>No elegible</td><td>284</td><td>190</td><td>160</td><td>245</td><td>411</td><td>477</td><td>520</td><td>134</td><td>No elegible</td></tr></tbody></table></div></details>
 </figure><figure aria-labelledby="titulo-grafico-6" class="figura grafico-card" data-chart="6" id="figura-06">
 <figcaption class="grafico-cabecera">
@@ -4216,6 +4349,10 @@ el mapa de salidas facturadas por referencia y mes, y las correlaciones por reza
 <div aria-describedby="nota-grafico-6" aria-label="Persistencia y repetición anual: diagnóstico descriptivo. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-6" role="img"></div>
 <img alt="Persistencia y repetición anual: diagnóstico descriptivo" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_06.png"/>
 <p class="grafico-nota" id="nota-grafico-6">Correlaciones descriptivas con pares disponibles y separación real en meses. No constituyen una prueba de estacionalidad.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>La persistencia de un mes y la repetición anual orientan qué métodos de pronóstico comparar y cómo evaluarlos respetando el orden temporal.</p>
+<p><span>Información que falta</span>Una serie de consumo observado validada; estas correlaciones son descriptivas y no prueban estacionalidad por referencia.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Rezagos" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Persistencia y repetición anual: diagnóstico descriptivo</caption><thead><tr><th scope="col">Rezago (meses)</th><th scope="col">Correlación de Pearson</th><th scope="col">Pares disponibles</th></tr></thead><tbody><tr><th scope="row">1</th><td>0,451</td><td>37</td></tr><tr><th scope="row">2</th><td>0,198</td><td>36</td></tr><tr><th scope="row">3</th><td>-0,170</td><td>35</td></tr><tr><th scope="row">4</th><td>-0,173</td><td>34</td></tr><tr><th scope="row">5</th><td>-0,180</td><td>33</td></tr><tr><th scope="row">6</th><td>-0,293</td><td>32</td></tr><tr><th scope="row">7</th><td>-0,138</td><td>31</td></tr><tr><th scope="row">8</th><td>-0,099</td><td>30</td></tr><tr><th scope="row">9</th><td>-0,113</td><td>30</td></tr><tr><th scope="row">10</th><td>0,030</td><td>29</td></tr><tr><th scope="row">11</th><td>0,440</td><td>28</td></tr><tr><th scope="row">12</th><td>0,654</td><td>30</td></tr></tbody></table></div></details>
 </figure></div>
 <div class="md"><p>Lectura. En enero–agosto, S_F fue de 45.344, 61.438, 56.093 y 62.464 unidades entre 2023 y 2026, con
@@ -4227,6 +4364,8 @@ vacunas sigan la misma estacionalidad.</p>
 F, frente a 6.518 en agosto de 2025. En agosto de 2026 no hay filas L017 (el último registro es del 31 de
 julio), mientras que en agosto de 2025 había 1.235. Menos filas no significa menos salidas facturadas. Sigue
 pendiente confirmar la cobertura contable del periodo, en especial la del componente monetario.</p>
+<p><em>Para la política de compra.</em> La comparación con igual cobertura y la señal de repetición anual indican que el nivel cambia entre años y que algunos meses concentran más salidas. Una política de revisión periódica deberá anticipar esos picos con el tiempo de entrega suficiente, y los pronósticos deberán evaluarse respetando el orden temporal y los meses incompletos identificados.</p>
+<p><em>Información adicional necesaria.</em> Calendario de campañas y contratos, exportaciones completas de los meses parciales y confirmación de la cobertura contable de agosto de 2026.</p>
 </div>
 <div class="md"><h2 id="14-contrastes-exploratorios-entre-anos">14. Contrastes exploratorios entre años</h2>
 <p>¿Predominan los aumentos o las disminuciones entre los productos comparables? Para cada par de años
@@ -4378,6 +4517,8 @@ diagnóstico secundario y no sostienen conclusiones sobre demanda ni sobre causa
 <p>Efecto de la composición del catálogo. La cohorte de 34 códigos presentes en los cuatro periodos cae
 25,12 % en 2025, frente al 8,70 % del conjunto completo. Antes de atribuir un cambio a la necesidad de vacunas
 hay que revisar altas, sustituciones y recodificaciones de productos.</p>
+<p><em>Para la política de compra.</em> La política no puede suponer un nivel fijo de salidas ni tratar el catálogo como estable: necesitará revisiones periódicas y un tratamiento explícito para las referencias nuevas, retiradas o sustituidas.</p>
+<p><em>Información adicional necesaria.</em> Altas, retiros, sustituciones y recodificaciones de productos, con sus fechas.</p>
 </div>
 <div class="md"><h2 id="15-saldos-bodegas-y-limites-de-la-lectura-monetaria">15. Saldos, bodegas y límites de la lectura monetaria</h2>
 <p>¿Qué señales requieren revisión operativa antes del modelamiento? Se cuentan los saldos negativos y en cero
@@ -4508,6 +4649,10 @@ con mayor volumen, conservando los valores extremos.</p>
 <div aria-describedby="nota-grafico-7" aria-label="Distribuciones mensuales: medianas, dispersión y extremos. Datos disponibles en la tabla inferior." class="grafico-lienzo" hidden="" id="grafico-7" role="img"></div>
 <img alt="Distribuciones mensuales: medianas, dispersión y extremos" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_07.png"/>
 <p class="grafico-nota" id="nota-grafico-7">Seis referencias de mayor volumen · meses completos elegibles. Se conservan los valores extremos; bigotes de 1,5 × RIC.</p>
+<div aria-label="Relación con la política de compra" class="grafico-politica">
+<p><span>Para la política de compra</span>Muestra cuánto varía cada referencia de un mes a otro: la dispersión que la protección de la política deberá cubrir.</p>
+<p><span>Información que falta</span>Tiempo de entrega, intervalo de revisión, existencias utilizables y nivel de servicio acordado; la mediana describe el histórico y no es una cantidad de compra.</p>
+</div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Distribuciones" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Distribuciones mensuales: medianas, dispersión y extremos</caption><thead><tr><th scope="col">Referencia</th><th scope="col">Código</th><th scope="col">Mes</th><th scope="col">Unidades S_F</th></tr></thead><tbody><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-04</td><td>1.300</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-05</td><td>3.203</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-06</td><td>1.157</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-07</td><td>2.178</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-08</td><td>687</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-09</td><td>424</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-10</td><td>701</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2023-11</td><td>656</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-01</td><td>8</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-02</td><td>8</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-03</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-04</td><td>258</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-05</td><td>1.782</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-06</td><td>3.865</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-07</td><td>1.447</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-08</td><td>2.323</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-09</td><td>155</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-10</td><td>42</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2024-11</td><td>117</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-01</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-02</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-03</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-04</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-05</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-06</td><td>427</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-07</td><td>910</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-08</td><td>825</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-09</td><td>1.156</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-10</td><td>778</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2025-11</td><td>322</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-01</td><td>28</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-02</td><td>251</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-03</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-04</td><td>0</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-05</td><td>2.583</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-06</td><td>1.590</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-07</td><td>1.276</td></tr><tr><th scope="row">VAXIGRIP TETRA</th><td>002-0006-000001</td><td>2026-08</td><td>334</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-01</td><td>83</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-02</td><td>17</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-03</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-04</td><td>117</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-05</td><td>643</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-06</td><td>676</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-07</td><td>405</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-08</td><td>315</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-09</td><td>431</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-10</td><td>408</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2023-11</td><td>164</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-01</td><td>2</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-02</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-03</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-04</td><td>2.699</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-05</td><td>1.139</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-06</td><td>1.401</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-07</td><td>872</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-08</td><td>351</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-09</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-10</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2024-11</td><td>606</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-01</td><td>7</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-02</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-03</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-04</td><td>1.470</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-05</td><td>3.974</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-06</td><td>1.982</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-07</td><td>1.196</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-08</td><td>662</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-09</td><td>707</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-10</td><td>543</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2025-11</td><td>256</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-01</td><td>25</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-02</td><td>2</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-03</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-04</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-05</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-06</td><td>0</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-07</td><td>699</td></tr><tr><th scope="row">INFLUVAC TETRA</th><td>002-0006-000014</td><td>2026-08</td><td>356</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-01</td><td>173</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-02</td><td>179</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-03</td><td>78</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-04</td><td>324</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-05</td><td>100</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-06</td><td>35</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-07</td><td>382</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-08</td><td>97</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-09</td><td>218</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-10</td><td>154</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2023-11</td><td>172</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-01</td><td>365</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-02</td><td>288</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-03</td><td>188</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-04</td><td>48</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-05</td><td>161</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-06</td><td>238</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-07</td><td>352</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-08</td><td>217</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-09</td><td>932</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-10</td><td>138</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2024-11</td><td>539</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-01</td><td>184</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-02</td><td>345</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-03</td><td>867</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-04</td><td>311</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-05</td><td>587</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-06</td><td>274</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-07</td><td>434</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-08</td><td>459</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-09</td><td>411</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-10</td><td>565</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2025-11</td><td>277</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-01</td><td>230</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-02</td><td>243</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-03</td><td>316</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-04</td><td>731</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-05</td><td>369</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-06</td><td>371</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-07</td><td>261</td></tr><tr><th scope="row">VACUNA ANTITETANICA DELTA</th><td>002-0007-000006</td><td>2026-08</td><td>217</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-01</td><td>663</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-02</td><td>363</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-03</td><td>551</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-04</td><td>455</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-05</td><td>1.376</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-06</td><td>482</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-07</td><td>962</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-08</td><td>571</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-09</td><td>214</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-10</td><td>767</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2023-11</td><td>125</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-01</td><td>1.393</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-02</td><td>670</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-03</td><td>1.015</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-04</td><td>565</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-05</td><td>459</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-06</td><td>1.352</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-07</td><td>174</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-08</td><td>670</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-09</td><td>1.067</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-10</td><td>457</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2024-11</td><td>404</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-01</td><td>3</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-02</td><td>0</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-03</td><td>0</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-04</td><td>392</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-05</td><td>430</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-06</td><td>14</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-07</td><td>1</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-08</td><td>147</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-09</td><td>4</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-10</td><td>3</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2025-11</td><td>0</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-01</td><td>6</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-02</td><td>2</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-03</td><td>2</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-04</td><td>93</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-05</td><td>350</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-06</td><td>790</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-07</td><td>313</td></tr><tr><th scope="row">VACUNA CONTRA HEPATITIS B VIAL 20MCG</th><td>003-0006-000004</td><td>2026-08</td><td>287</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-01</td><td>403</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-02</td><td>257</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-03</td><td>245</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-04</td><td>194</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-05</td><td>249</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-06</td><td>331</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-07</td><td>356</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-08</td><td>297</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-09</td><td>200</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-10</td><td>142</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2023-11</td><td>302</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-01</td><td>321</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-02</td><td>536</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-03</td><td>375</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-04</td><td>350</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-05</td><td>407</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-06</td><td>367</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-07</td><td>299</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-08</td><td>412</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-09</td><td>333</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-10</td><td>395</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2024-11</td><td>230</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-01</td><td>291</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-02</td><td>310</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-03</td><td>219</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-04</td><td>199</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-05</td><td>151</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-06</td><td>313</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-07</td><td>511</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-08</td><td>216</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-09</td><td>429</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-10</td><td>382</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2025-11</td><td>385</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-01</td><td>876</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-02</td><td>594</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-03</td><td>747</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-04</td><td>585</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-05</td><td>423</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-06</td><td>801</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-07</td><td>760</td></tr><tr><th scope="row">PRIORIX MMR</th><td>003-0007-000001</td><td>2026-08</td><td>615</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-01</td><td>377</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-02</td><td>91</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-03</td><td>166</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-04</td><td>114</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-05</td><td>230</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-06</td><td>257</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-07</td><td>427</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-08</td><td>296</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-09</td><td>162</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-10</td><td>116</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2023-11</td><td>208</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-01</td><td>480</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-02</td><td>437</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-03</td><td>328</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-04</td><td>460</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-05</td><td>544</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-06</td><td>737</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-07</td><td>879</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-08</td><td>543</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-09</td><td>725</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-10</td><td>508</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2024-11</td><td>382</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-01</td><td>839</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-02</td><td>664</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-03</td><td>483</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-04</td><td>117</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-05</td><td>594</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-06</td><td>357</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-07</td><td>504</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-08</td><td>417</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-09</td><td>452</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-10</td><td>335</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2025-11</td><td>265</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-01</td><td>933</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-02</td><td>466</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-03</td><td>480</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-04</td><td>796</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-05</td><td>432</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-06</td><td>556</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-07</td><td>766</td></tr><tr><th scope="row">VARIVAX</th><td>003-0008-000003</td><td>2026-08</td><td>693</td></tr></tbody></table></div></details>
 </figure></div>
 <div class="md"><p>Lectura. La gran mayoría de los movimientos (110.994 de 119.214 filas) se registra en la bodega 1; la bodega 3 aparece en una sola fila.
@@ -4521,6 +4666,8 @@ ni rentabilidad. La posible valoración separada en L017 (sección 6) y la ausen
 julio de 2026 exigen una revisión contable antes de cualquier análisis económico.</p>
 <p>Las fechas con formato <code>AAAAMMDD</code> de las filas de lote siguen siendo candidatas a fecha de vencimiento. No se
 calculan pérdidas por vencimiento mientras no se confirme su significado y su vínculo con cada lote.</p>
+<p><em>Para la política de compra.</em> La posición de inventario que usará la política no puede tomarse del saldo consolidado del informe: debe construirse con existencias utilizables por referencia, lote y bodega, más los pedidos pendientes y los compromisos. Las alertas de saldo quedan como casos para revisar; la herramienta deberá distinguir una alerta de registro de un faltante operativo. Mientras los costos no estén conciliados, la evaluación se expresará en unidades.</p>
+<p><em>Información adicional necesaria.</em> Existencias utilizables por lote y bodega, reservas, pedidos y recepciones vinculados, tiempos de entrega, fechas de vencimiento, bajas, costos conciliados y solicitudes no atendidas.</p>
 </div>
 <div class="md"><h2 id="16-verificacion-de-los-agregados">16. Verificación de los agregados</h2>
 <p>¿Reproducen los agregados exactamente los movimientos de la base, y se conservaron intactas las fuentes? La
@@ -4661,36 +4808,73 @@ líneas de la base, y ni los archivos originales ni los intermedios cambiaron du
 <div class="md"><hr/>
 <h1 id="parte-iv-cierre">Parte IV · Cierre</h1>
 </div>
-<div class="md"><h2 id="17-conclusiones-hacia-la-variable-respuesta">17. Conclusiones: hacia la variable respuesta</h2>
+<div class="md"><h2 id="17-conclusiones-y-ruta-hacia-la-politica-de-compra">17. Conclusiones y ruta hacia la política de compra</h2>
 <p>Lo que deja este análisis.</p>
 <ul>
-<li>La Fase 1 produjo una base analítica validada: 119.214 movimientos y 50 variables, obtenidos de 188.078
-filas exportadas, trazables hasta su fila de origen y verificados con 22 controles.</li>
-<li>La exploración caracterizó los movimientos. Las salidas se concentran en documentos de factura, el volumen
-se reparte entre muchas referencias, la regularidad cambia de una vacuna a otra y aparece una señal
-descriptiva de repetición anual.</li>
-<li>También identificó lo que condiciona cualquier modelo posterior: meses incompletos, saldos consolidados por
-producto, documentos cuyo significado no está confirmado y cambios en la composición del catálogo.</li>
+<li>Una base analítica validada: 119.214 movimientos y 50 variables, obtenidos de 188.078 filas exportadas,
+trazables hasta su fila de origen y verificados con 22 controles.</li>
+<li>Una medida provisional de salidas facturadas por referencia y mes (S_F), separada de traslados, ajustes y
+otros documentos.</li>
+<li>Una caracterización del histórico: el volumen se reparte entre muchas referencias, la regularidad cambia de
+una a otra, hay meses sin salidas facturadas, aparece una señal descriptiva de repetición anual y los cambios
+del catálogo pesan en las comparaciones entre años.</li>
+<li>Un inventario de lo que falta: meses incompletos, saldos consolidados, documentos sin significado
+confirmado, unidades sin homologar y lotes sin vincular.</li>
 </ul>
-<p>Por qué las salidas facturadas todavía no son demanda. S_F es la aproximación observable más cercana al
-uso de las vacunas, pero no equivale a demanda por tres razones: no está confirmado que cada unidad facturada
-corresponda a una vacuna aplicada; las devoluciones (J002) no están emparejadas con las facturas que
-revierten; y el informe no registra las solicitudes que no pudieron atenderse. Por la misma razón, un mes sin
-salidas facturadas no prueba ausencia de necesidad.</p>
-<p>Lo que debe resolverse con la empresa para construir la variable respuesta.</p>
+<p>Qué aporta a la política de compra. La evidencia respalda diseñar la política por referencia, distinguir las
+referencias regulares de las irregulares, anticipar los meses de mayor salida y priorizar para el piloto las
+referencias con historia suficiente. También muestra que la medida de necesidades debe validarse antes de
+calcular compras: usar todas las salidas sobrestimaría el volumen facturado en 13,41 %.</p>
+<p>Lo que el EDA todavía no permite afirmar.</p>
 <ul>
-<li>qué prefijos corresponden a salidas hacia pacientes y cuáles a traslados, reversiones o ajustes;</li>
-<li>cómo netear las reversiones contra las salidas que revierten;</li>
-<li>cómo tratar los traslados entre bodegas para no contarlos como consumo;</li>
-<li>cómo excluir las filas que solo mueven valor (L017);</li>
-<li>cómo tratar los meses incompletos en la serie mensual;</li>
-<li>que la serie resultante se denomine «consumo observado» y no «demanda», salvo validación de la empresa.</li>
+<li>Que las salidas facturadas sean demanda real: no está confirmado que cada unidad facturada corresponda a una
+vacuna aplicada, las devoluciones (J002) no están emparejadas con sus facturas y el informe no registra las
+solicitudes no atendidas.</li>
+<li>Que un promedio histórico sea la cantidad que debe comprarse.</li>
+<li>Que un saldo cero o negativo demuestre desabastecimiento, o que un mes sin salidas indique ausencia de
+necesidad.</li>
+<li>Cuánto comprar de cada referencia, cuánto se ahorraría o cuánto se reducirían los vencimientos: nada de eso
+se ha calculado todavía.</li>
 </ul>
-<p>Volviendo a la pregunta inicial. No es posible decidir cuánto comprar de una vacuna a partir de las
-salidas tal como aparecen en el sistema: una parte de ellas no representa uso, y el registro no muestra la
-necesidad que no se atendió. Por eso el siguiente paso del proyecto no es todavía el pronóstico, sino la
-definición formal de la variable respuesta. Solo sobre una medida de consumo validada tendrán sustento el
-stock de seguridad, los mínimos y máximos y los puntos de reorden.</p>
+<h3 id="ruta-de-las-siguientes-etapas">Ruta de las siguientes etapas</h3>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Qué se hará</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Validar el consumo observado</td>
+<td>Confirmar el significado de los documentos, homologar códigos y unidades y revisar la cobertura de los meses parciales.</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2. Incorporar datos operativos</td>
+<td>Existencias utilizables por lote y bodega, pedidos, recepciones, tiempos de entrega, compromisos, vencimientos, bajas y costos.</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3. Comparar pronósticos</td>
+<td>Métodos sencillos de referencia frente a alternativas justificadas, con evaluación temporal, incertidumbre y un horizonte que cubra el tiempo de entrega y el intervalo de revisión.</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4. Formular y simular políticas</td>
+<td>Revisión periódica o mínimos y máximos por referencia, comparadas con el procedimiento actual y reglas sencillas mediante simulación histórica y escenarios.</td>
+<td>4 y 5</td>
+</tr>
+<tr>
+<td>5. Implementar y evaluar un piloto</td>
+<td>Herramienta que actualice y muestre cantidades y momentos sugeridos, con sus supuestos y alertas, probada con referencias que tengan datos suficientes.</td>
+<td>6</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cómo se medirá el resultado. La aspiración de estar siempre abastecidos sin perder dinero se evaluará con metas medibles, acordadas con la empresa antes de comparar resultados: proporción de unidades atendidas oportunamente, frecuencia y duración de faltantes, unidades vencidas o dadas de baja, inventario promedio mantenido y costos relevantes. Sin costos conciliados se compararán resultados en unidades; sin lotes validados no se afirmará una reducción de vencimientos. Una mejora simulada no equivale a un beneficio ya obtenido.</p>
+<p>Volviendo a la pregunta inicial. Determinar cuánto y cuándo comprar cada referencia exige combinar su comportamiento histórico con las existencias utilizables, los tiempos de reposición y los vencimientos. Este EDA resolvió la primera parte: dejó el histórico trazable, caracterizado por referencia y con sus límites explícitos. La siguiente etapa es validar la medida de consumo e incorporar los datos operativos; solo entonces podrán compararse pronósticos y políticas que respondan la pregunta con cantidades y momentos de compra evaluados.</p>
 </div>
 <div class="md"><hr/>
 <h2 id="anexo-tecnico-reproducibilidad">Anexo técnico · Reproducibilidad</h2>
@@ -4747,6 +4931,8 @@ notebook. El <code>.parquet</code> conserva los valores, aunque la representaci�
 <li>Si cambian los <code>.xlsx</code>, se borra <code>analisis/cache/</code>, se ejecutan en orden los scripts de los Pasos 1 a 4 y
 luego el notebook.</li>
 <li>La carpeta <code>analisis/cache/</code> es una optimización de lectura, no un entregable, y contiene <code>DESCRIPCION</code>.</li>
+<li>La versión web en formato libro se regenera desde este notebook con <code>GITHUB_PAGES_EDA/construir_sitio.py</code>,
+que no ejecuta el análisis: usa las salidas guardadas y la evidencia exportada.</li>
 </ul>
 <p>Material de revisión. La Parte III exporta 20 tablas agregadas y un archivo de evidencia
 (<code>docs/tablas_inventario/</code>), además de 7 figuras (<code>docs/figuras_inventario/</code>), sin datos personales. El

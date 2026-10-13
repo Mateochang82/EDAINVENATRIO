@@ -255,7 +255,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li class="toc-h2"><a href="#8-base-analitica-final">8. Base analítica final</a></li>
 <li class="toc-h2"><a href="#9-sintesis-de-la-fase-1">9. Síntesis de la Fase 1</a></li>
 <li class="toc-h1"><a href="#parte-iii-exploracion-de-los-movimientos">Parte III · Exploración de los movimientos</a></li>
-<li class="toc-h2"><a href="#10-de-las-salidas-registradas-a-una-medida-observable">10. De las salidas registradas a una medida observable</a></li>
+<li class="toc-h2"><a href="#10-de-las-salidas-registradas-a-la-variable-objetivo">10. De las salidas registradas a la variable objetivo</a></li>
 <li class="toc-h2"><a href="#11-documentos-y-construccion-de-medidas-exploratorias">11. Documentos y construcción de medidas exploratorias</a></li>
 <li class="toc-h2"><a href="#12-productos-concentracion-variabilidad-y-meses-sin-salidas-">12. Productos: concentración, variabilidad y meses sin salidas facturadas</a></li>
 <li class="toc-h2"><a href="#13-evolucion-temporal-y-comparaciones-con-igual-cobertura">13. Evolución temporal y comparaciones con igual cobertura</a></li>
@@ -298,9 +298,9 @@ investigación, con todas sus condiciones, se presenta en la sección 0.</p>
       <p class="ruta-intro">Este documento cubre las dos primeras etapas. Las siguientes requieren datos que la empresa debe validar o suministrar antes de calcular compras.</p>
       <ol class="ruta-pasos">
         <li class="hecho"><a href="#parte-ii-construccion-y-validacion-de-la-base-analitica-fase"><span class="n">1</span><span class="t">Base histórica validada</span><small>Hecho · Fase 1</small></a></li>
-        <li class="hecho actual"><a href="#parte-iii-exploracion-de-los-movimientos"><span class="n">2</span><span class="t">Caracterización por referencia</span><small>Este EDA</small></a></li>
-        <li class="siguiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">3</span><span class="t">Consumo observado y datos operativos</span><small>Siguiente etapa</small></a></li>
-        <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">4</span><span class="t">Comparación de pronósticos</span><small>Pendiente</small></a></li>
+        <li class="hecho actual"><a href="#parte-iii-exploracion-de-los-movimientos"><span class="n">2</span><span class="t">Variable objetivo S_F y caracterización</span><small>Este EDA</small></a></li>
+        <li class="siguiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">3</span><span class="t">Afinar S_F y datos operativos</span><small>Siguiente etapa</small></a></li>
+        <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">4</span><span class="t">Pronóstico de S_F</span><small>Pendiente</small></a></li>
         <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">5</span><span class="t">Simulación de políticas de compra</span><small>Pendiente</small></a></li>
         <li class="pendiente"><a href="#ruta-de-las-siguientes-etapas"><span class="n">6</span><span class="t">Herramienta y piloto</span><small>Pendiente</small></a></li>
       </ol>
@@ -339,11 +339,14 @@ cuyo patrón es compatible con traslados entre bodegas. Usar todas las salidas a
 facturada y llevaría a sobrestimar necesidades. Aun las salidas facturadas son registros observados, no demanda
 real confirmada: una factura no demuestra que la vacuna se aplicó y el informe no registra las solicitudes que
 no pudieron atenderse.</p>
-<p>Qué aporta a la política. El EDA entrega una base trazable, una medida provisional de salidas facturadas por
-referencia y mes y evidencia de que las referencias difieren en volumen, variabilidad y calendario. Esa
+<p>Variable objetivo. El proyecto adopta S_F —las salidas facturadas (F003 y F005) por referencia y mes— como
+variable objetivo: es la medida observable más cercana al uso de las vacunas y la serie que se pronosticará para
+decidir cuánto y cuándo comprar. Se denomina salidas facturadas o consumo observado, no demanda real.</p>
+<p>Qué aporta a la política. El EDA entrega una base trazable, la serie de S_F por referencia y mes y evidencia de que las referencias difieren en volumen, variabilidad y calendario. Esa
 evidencia orienta cómo tratar cada referencia, qué horizonte evaluar y qué datos faltan; no fija cantidades de
 compra.</p>
-<p>Qué falta. Validar con la empresa la medida de consumo observado, homologar códigos y unidades e incorporar
+<p>Qué falta. Confirmar con la empresa los ajustes de S_F (si F003 y F005 corresponden a aplicación y cómo
+vincular las devoluciones J002), homologar códigos y unidades e incorporar
 existencias utilizables, pedidos, recepciones, tiempos de entrega, lotes, vencimientos y costos. Sobre esos
 insumos se compararán pronósticos, se simularán políticas y se evaluará un piloto.</p>
 </div>
@@ -375,7 +378,7 @@ intermedios, huellas SHA-256) se reúnen en el anexo final.</p>
 </tr>
 <tr>
 <td>III. Exploración de los movimientos</td>
-<td>10. De las salidas registradas a una medida observable · 11. Documentos y medidas · 12. Productos · 13. Evolución temporal · 14. Contrastes entre años · 15. Saldos, bodegas y valores · 16. Verificación de los agregados</td>
+<td>10. De las salidas registradas a la variable objetivo · 11. Documentos y medidas · 12. Productos · 13. Evolución temporal · 14. Contrastes entre años · 15. Saldos, bodegas y valores · 16. Verificación de los agregados</td>
 </tr>
 <tr>
 <td>IV. Cierre</td>
@@ -423,8 +426,8 @@ contiene pronósticos, cantidades recomendadas ni ahorros.</p>
 <tbody>
 <tr>
 <td>1. Base trazable y medida de consumo</td>
-<td>Base validada de 119.214 movimientos y 50 variables; medida provisional S_F (salidas facturadas).</td>
-<td>Validar la medida con la empresa; homologar códigos y unidades.</td>
+<td>Base validada de 119.214 movimientos y 50 variables; variable objetivo S_F (salidas facturadas por referencia y mes).</td>
+<td>Confirmar con la empresa los ajustes de S_F (aplicación, devoluciones J002); homologar códigos y unidades.</td>
 </tr>
 <tr>
 <td>2. Caracterización por referencia</td>
@@ -433,8 +436,8 @@ contiene pronósticos, cantidades recomendadas ni ahorros.</p>
 </tr>
 <tr>
 <td>3. Pronóstico e incertidumbre</td>
-<td>Panel de 48 códigos × 45 meses, con meses incompletos identificados y ventanas comparables entre años.</td>
-<td>Elegir la serie objetivo y comparar métodos con evaluación temporal.</td>
+<td>Serie de S_F en un panel de 48 códigos × 45 meses, con meses incompletos identificados y ventanas comparables entre años.</td>
+<td>Comparar métodos para pronosticar S_F con evaluación temporal.</td>
 </tr>
 <tr>
 <td>4 y 5. Políticas y simulación</td>
@@ -450,7 +453,8 @@ contiene pronósticos, cantidades recomendadas ni ahorros.</p>
 </table></div>
 <h3 id="distinciones-que-se-mantienen-en-todo-el-documento">Distinciones que se mantienen en todo el documento</h3>
 <ul>
-<li>Las salidas facturadas son registros observados, no demanda real confirmada.</li>
+<li>S_F es la variable objetivo del proyecto, pero es un registro observado: se denomina salidas facturadas o
+consumo observado, no demanda real confirmada.</li>
 <li>Los promedios históricos describen el pasado; no son cantidades recomendadas de compra.</li>
 <li>Los 48 códigos no equivalen necesariamente a 48 vacunas clínicamente distintas.</li>
 <li>Un saldo cero o negativo no demuestra por sí solo desabastecimiento.</li>
@@ -2645,11 +2649,11 @@ posterior, pero es solo una hipótesis: la causa debe confirmarla la empresa.</p
 <li>65.010 mueven solo unidades, con valor cero (F003, F005, J002, C001, la mayoría de T001 y 31 de P001);</li>
 <li>3.608 mueven ambos.</li>
 </ul>
-<p>Como las filas L017 no cambian unidades según el informe, su papel en la variable respuesta deberá decidirse
-más adelante. Queda como hipótesis, pendiente de confirmación, que la valoración monetaria de las salidas
+<p>Como las filas L017 no cambian unidades según el informe, no forman parte de la variable objetivo S_F; su papel
+en la valoración monetaria deberá confirmarse. Queda como hipótesis, pendiente de confirmación, que la valoración monetaria de las salidas
 registradas con valor cero se contabilice aparte, en los documentos L017.</p>
 <p>Limitaciones. Las banderas describen, no corrigen; el tratamiento de las filas marcadas se decidirá al
-construir la variable respuesta. Como el saldo es consolidado, un total positivo puede ocultar una bodega en
+afinar la variable objetivo. Como el saldo es consolidado, un total positivo puede ocultar una bodega en
 negativo. Y dentro de un mismo día, el orden de las filas es el del informe, que puede no coincidir con el
 orden físico.</p>
 </div>
@@ -3140,22 +3144,22 @@ movimientos de cada referencia y qué parte de ellos puede alimentar la decisió
 <div class="md"><hr/>
 <h1 id="parte-iii-exploracion-de-los-movimientos">Parte III · Exploración de los movimientos</h1>
 </div>
-<div class="md"><h2 id="10-de-las-salidas-registradas-a-una-medida-observable">10. De las salidas registradas a una medida observable</h2>
+<div class="md"><h2 id="10-de-las-salidas-registradas-a-la-variable-objetivo">10. De las salidas registradas a la variable objetivo</h2>
 <p>Una política de compra necesita saber, para cada referencia, cuánto sale, con qué regularidad, en qué meses
 y con qué cambios del catálogo. Esta parte examina esas características en el histórico y las cautelas que
-exige pasar de un registro contable a una medida de consumo. Es una evaluación exploratoria: la definición
-empresarial de la medida de consumo observado sigue pendiente. Cada resultado termina con lo que aporta a la
+exige pasar de un registro contable a una medida de consumo. Aquí se define la variable objetivo del proyecto
+y se describe su comportamiento. Cada resultado termina con lo que aporta a la
 futura política y con la información adicional que necesita.</p>
-<p>Medidas utilizadas. De acuerdo con la información suministrada por la empresa, los documentos con prefijo
-F corresponden a facturas. A partir de ello se definen dos medidas por producto y mes, calculadas sobre una
-copia de trabajo sin nombres de terceros:</p>
+<p>Variable objetivo. De acuerdo con la información suministrada por la empresa, los documentos con prefijo F
+corresponden a facturas. Sobre esa base, el proyecto adopta como variable objetivo S_F: las unidades de salida registradas en documentos F003 y F005, por referencia y mes, calculadas sobre una copia de trabajo sin nombres de terceros.
+Se eligió porque es la medida observable más cercana al uso de las vacunas, excluye traslados y ajustes, y es la serie que se pronosticará para decidir cuánto y cuándo comprar.</p>
 <ul>
-<li>S_F: salidas registradas en F003 y F005 (salidas facturadas). Es la medida principal de esta parte.</li>
+<li>S_F: variable objetivo. Se expresa en las unidades del reporte y sus estadísticas usan solo meses completos.</li>
 <li>S_FJ: S_F menos las entradas J002 del mismo mes. Es solo un análisis de sensibilidad: descuenta por mes
 de registro y no empareja cada devolución con su factura original.</li>
 </ul>
-<p>Que exista una factura no confirma que cada unidad facturada corresponda a una vacuna aplicada. La
-documentación pública de Siigo respalda una interpretación general de los documentos J, T y L, pero no
+<p>Cómo se usará para decidir compras. La política pronosticará S_F por referencia en el horizonte de reposición (tiempo de entrega más intervalo hasta la próxima revisión) y combinará ese pronóstico con las existencias utilizables y los pedidos pendientes para obtener cuánto y cuándo comprar.</p>
+<p>Que exista una factura no confirma que cada unidad facturada corresponda a una vacuna aplicada. Por eso S_F se denomina salidas facturadas o consumo observado, no demanda real. Las confirmaciones pendientes con la empresa —si F003 y F005 corresponden a aplicación y cómo vincular las devoluciones J002— pueden afinarla, pero no cambian la elección de la variable. La documentación pública de Siigo respalda una interpretación general de los documentos J, T y L, pero no
 confirma la configuración específica de esta empresa.</p>
 <p>Criterios de lectura.</p>
 <ul>
@@ -3701,12 +3705,12 @@ salidas como si fueran facturadas añadiría 40.423 unidades, un 13,41 % más. T
 4.375 grupos documento–producto y 4.368 de ellos involucran al menos dos bodegas; los siete restantes
 requieren revisar su configuración. J002 registra 10.760 entradas: al descontarlas, S_FJ suma 290.669, una
 reducción de 3,57 % respecto de S_F.</p>
-<p>S_F se mantiene como medida principal y S_FJ como sensibilidad, porque la lectura de J como devolución se
+<p>S_F se mantiene como variable objetivo y S_FJ como sensibilidad, porque la lectura de J como devolución se
 apoya en documentación general y no ha sido confirmada para J002. El límite del descuento por mes se ve en
 septiembre de 2026: la vacuna contra hepatitis B vial 20 mcg presenta S_FJ = −25 (209 salidas F y
 234 entradas J), en un mes que además está incompleto. No se trata de un consumo negativo, sino de una
 consecuencia de restar las entradas J002 por mes de registro.</p>
-<p><em>Para la política de compra.</em> S_F es la medida provisional de necesidades históricas con la que se compararán pronósticos y se simularán políticas. Usar todas las salidas sobrestimaría esas necesidades en 13,41 % y podría inducir compras excesivas; S_FJ muestra cuánto cambiaría el resultado si J002 se confirmara como devolución.</p>
+<p><em>Para la política de compra.</em> S_F es la variable objetivo: la serie que se pronosticará y con la que se simularán las políticas. Usar todas las salidas sobrestimaría esas necesidades en 13,41 % y podría inducir compras excesivas; S_FJ muestra cuánto cambiaría el resultado si J002 se confirmara como devolución.</p>
 <p><em>Información adicional necesaria.</em> Confirmar si F003 y F005 corresponden a aplicación o despacho, vincular cada J002 con la factura que revierte y confirmar el significado de T001, L017 y L018.</p>
 </div>
 <div class="md"><h2 id="12-productos-concentracion-variabilidad-y-meses-sin-salidas-">12. Productos: concentración, variabilidad y meses sin salidas facturadas</h2>
@@ -4302,8 +4306,8 @@ el mapa de salidas facturadas por referencia y mes, y las correlaciones por reza
 <img alt="Evolución mensual: volumen registrado y escenario de descuento" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_03.png"/>
 <p class="grafico-nota" id="nota-grafico-3">Las bandas grises señalan exportaciones incompletas. S_FJ es el escenario de descuento de J002; no una medida validada de consumo.</p>
 <div aria-label="Relación con la política de compra" class="grafico-politica">
-<p><span>Para la política de compra</span>Muestra el nivel y los picos del volumen agregado que la política deberá cubrir, con los meses incompletos identificados.</p>
-<p><span>Información que falta</span>Exportaciones completas de los meses parciales y una medida de consumo validada: S_F es un registro observado, no demanda real.</p>
+<p><span>Para la política de compra</span>Muestra el nivel y los picos de la variable objetivo S_F agregada, que la política deberá cubrir, con los meses incompletos identificados.</p>
+<p><span>Información que falta</span>Exportaciones completas de los meses parciales y confirmar si las facturas corresponden a aplicación: S_F es la variable objetivo, pero es un registro observado, no demanda real.</p>
 </div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Evolución mensual" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Evolución mensual: volumen registrado y escenario de descuento</caption><thead><tr><th scope="col">Mes</th><th scope="col">S_F</th><th scope="col">S_FJ</th><th scope="col">Cobertura</th></tr></thead><tbody><tr><th scope="row">2023-01</th><td>4.404</td><td>4.286</td><td>Completo</td></tr><tr><th scope="row">2023-02</th><td>2.688</td><td>2.506</td><td>Completo</td></tr><tr><th scope="row">2023-03</th><td>3.285</td><td>3.225</td><td>Completo</td></tr><tr><th scope="row">2023-04</th><td>4.788</td><td>4.763</td><td>Completo</td></tr><tr><th scope="row">2023-05</th><td>11.083</td><td>10.102</td><td>Completo</td></tr><tr><th scope="row">2023-06</th><td>6.167</td><td>6.066</td><td>Completo</td></tr><tr><th scope="row">2023-07</th><td>7.779</td><td>7.130</td><td>Completo</td></tr><tr><th scope="row">2023-08</th><td>5.150</td><td>5.078</td><td>Completo</td></tr><tr><th scope="row">2023-09</th><td>5.941</td><td>5.936</td><td>Completo</td></tr><tr><th scope="row">2023-10</th><td>5.473</td><td>5.416</td><td>Completo</td></tr><tr><th scope="row">2023-11</th><td>4.609</td><td>4.241</td><td>Completo</td></tr><tr><th scope="row">2023-12</th><td>3.710</td><td>3.572</td><td>Incompleto</td></tr><tr><th scope="row">2024-01</th><td>5.849</td><td>5.656</td><td>Completo</td></tr><tr><th scope="row">2024-02</th><td>5.260</td><td>5.028</td><td>Completo</td></tr><tr><th scope="row">2024-03</th><td>4.976</td><td>4.923</td><td>Completo</td></tr><tr><th scope="row">2024-04</th><td>7.239</td><td>6.579</td><td>Completo</td></tr><tr><th scope="row">2024-05</th><td>9.295</td><td>8.993</td><td>Completo</td></tr><tr><th scope="row">2024-06</th><td>11.545</td><td>11.231</td><td>Completo</td></tr><tr><th scope="row">2024-07</th><td>8.459</td><td>8.157</td><td>Completo</td></tr><tr><th scope="row">2024-08</th><td>8.815</td><td>8.689</td><td>Completo</td></tr><tr><th scope="row">2024-09</th><td>7.392</td><td>6.845</td><td>Completo</td></tr><tr><th scope="row">2024-10</th><td>5.421</td><td>5.274</td><td>Completo</td></tr><tr><th scope="row">2024-11</th><td>6.179</td><td>5.988</td><td>Completo</td></tr><tr><th scope="row">2024-12</th><td>4.927</td><td>4.822</td><td>Incompleto</td></tr><tr><th scope="row">2025-01</th><td>5.604</td><td>5.269</td><td>Completo</td></tr><tr><th scope="row">2025-02</th><td>5.091</td><td>5.038</td><td>Completo</td></tr><tr><th scope="row">2025-03</th><td>4.824</td><td>4.265</td><td>Completo</td></tr><tr><th scope="row">2025-04</th><td>6.538</td><td>6.470</td><td>Completo</td></tr><tr><th scope="row">2025-05</th><td>10.581</td><td>10.440</td><td>Completo</td></tr><tr><th scope="row">2025-06</th><td>8.552</td><td>8.484</td><td>Completo</td></tr><tr><th scope="row">2025-07</th><td>8.385</td><td>8.180</td><td>Completo</td></tr><tr><th scope="row">2025-08</th><td>6.518</td><td>6.483</td><td>Completo</td></tr><tr><th scope="row">2025-09</th><td>7.872</td><td>7.829</td><td>Completo</td></tr><tr><th scope="row">2025-10</th><td>7.810</td><td>7.688</td><td>Completo</td></tr><tr><th scope="row">2025-11</th><td>5.090</td><td>4.959</td><td>Completo</td></tr><tr><th scope="row">2025-12</th><td>6.536</td><td>6.185</td><td>Incompleto</td></tr><tr><th scope="row">2026-01</th><td>7.960</td><td>7.482</td><td>Completo</td></tr><tr><th scope="row">2026-02</th><td>5.766</td><td>5.716</td><td>Completo</td></tr><tr><th scope="row">2026-03</th><td>5.948</td><td>5.809</td><td>Completo</td></tr><tr><th scope="row">2026-04</th><td>6.550</td><td>6.428</td><td>Completo</td></tr><tr><th scope="row">2026-05</th><td>10.703</td><td>9.956</td><td>Completo</td></tr><tr><th scope="row">2026-06</th><td>8.423</td><td>8.270</td><td>Completo</td></tr><tr><th scope="row">2026-07</th><td>9.849</td><td>9.675</td><td>Completo</td></tr><tr><th scope="row">2026-08</th><td>7.265</td><td>6.832</td><td>Completo</td></tr><tr><th scope="row">2026-09</th><td>5.130</td><td>4.705</td><td>Incompleto</td></tr></tbody></table></div></details>
 </figure><figure aria-labelledby="titulo-grafico-4" class="figura grafico-card" data-chart="4" id="figura-04">
@@ -4350,8 +4354,8 @@ el mapa de salidas facturadas por referencia y mes, y las correlaciones por reza
 <img alt="Persistencia y repetición anual: diagnóstico descriptivo" class="grafico-respaldo" loading="lazy" src="assets/figuras/figura_06.png"/>
 <p class="grafico-nota" id="nota-grafico-6">Correlaciones descriptivas con pares disponibles y separación real en meses. No constituyen una prueba de estacionalidad.</p>
 <div aria-label="Relación con la política de compra" class="grafico-politica">
-<p><span>Para la política de compra</span>La persistencia de un mes y la repetición anual orientan qué métodos de pronóstico comparar y cómo evaluarlos respetando el orden temporal.</p>
-<p><span>Información que falta</span>Una serie de consumo observado validada; estas correlaciones son descriptivas y no prueban estacionalidad por referencia.</p>
+<p><span>Para la política de compra</span>La persistencia de un mes y la repetición anual de S_F orientan qué métodos de pronóstico comparar y cómo evaluarlos respetando el orden temporal.</p>
+<p><span>Información que falta</span>Afinar S_F con la empresa (aplicación y devoluciones J002); estas correlaciones son descriptivas y no prueban estacionalidad por referencia.</p>
 </div>
 <details class="datos-grafico"><summary>Ver datos del gráfico · todos los periodos</summary><div aria-label="Datos de Rezagos" class="tabla tabla-grafico" role="region" tabindex="0"><table><caption>Persistencia y repetición anual: diagnóstico descriptivo</caption><thead><tr><th scope="col">Rezago (meses)</th><th scope="col">Correlación de Pearson</th><th scope="col">Pares disponibles</th></tr></thead><tbody><tr><th scope="row">1</th><td>0,451</td><td>37</td></tr><tr><th scope="row">2</th><td>0,198</td><td>36</td></tr><tr><th scope="row">3</th><td>-0,170</td><td>35</td></tr><tr><th scope="row">4</th><td>-0,173</td><td>34</td></tr><tr><th scope="row">5</th><td>-0,180</td><td>33</td></tr><tr><th scope="row">6</th><td>-0,293</td><td>32</td></tr><tr><th scope="row">7</th><td>-0,138</td><td>31</td></tr><tr><th scope="row">8</th><td>-0,099</td><td>30</td></tr><tr><th scope="row">9</th><td>-0,113</td><td>30</td></tr><tr><th scope="row">10</th><td>0,030</td><td>29</td></tr><tr><th scope="row">11</th><td>0,440</td><td>28</td></tr><tr><th scope="row">12</th><td>0,654</td><td>30</td></tr></tbody></table></div></details>
 </figure></div>
@@ -4813,8 +4817,8 @@ líneas de la base, y ni los archivos originales ni los intermedios cambiaron du
 <ul>
 <li>Una base analítica validada: 119.214 movimientos y 50 variables, obtenidos de 188.078 filas exportadas,
 trazables hasta su fila de origen y verificados con 22 controles.</li>
-<li>Una medida provisional de salidas facturadas por referencia y mes (S_F), separada de traslados, ajustes y
-otros documentos.</li>
+<li>La variable objetivo del proyecto, S_F: salidas facturadas por referencia y mes, separadas de traslados,
+ajustes y otros documentos.</li>
 <li>Una caracterización del histórico: el volumen se reparte entre muchas referencias, la regularidad cambia de
 una a otra, hay meses sin salidas facturadas, aparece una señal descriptiva de repetición anual y los cambios
 del catálogo pesan en las comparaciones entre años.</li>
@@ -4823,8 +4827,8 @@ confirmado, unidades sin homologar y lotes sin vincular.</li>
 </ul>
 <p>Qué aporta a la política de compra. La evidencia respalda diseñar la política por referencia, distinguir las
 referencias regulares de las irregulares, anticipar los meses de mayor salida y priorizar para el piloto las
-referencias con historia suficiente. También muestra que la medida de necesidades debe validarse antes de
-calcular compras: usar todas las salidas sobrestimaría el volumen facturado en 13,41 %.</p>
+referencias con historia suficiente. También justifica la elección de S_F como variable objetivo: usar todas las salidas sobrestimaría el
+volumen facturado en 13,41 %.</p>
 <p>Lo que el EDA todavía no permite afirmar.</p>
 <ul>
 <li>Que las salidas facturadas sean demanda real: no está confirmado que cada unidad facturada corresponda a una
@@ -4847,8 +4851,8 @@ se ha calculado todavía.</li>
 </thead>
 <tbody>
 <tr>
-<td>1. Validar el consumo observado</td>
-<td>Confirmar el significado de los documentos, homologar códigos y unidades y revisar la cobertura de los meses parciales.</td>
+<td>1. Afinar la variable objetivo</td>
+<td>Confirmar con la empresa si F003 y F005 corresponden a aplicación, vincular las devoluciones J002, homologar códigos y unidades y revisar la cobertura de los meses parciales.</td>
 <td>1</td>
 </tr>
 <tr>
@@ -4857,7 +4861,7 @@ se ha calculado todavía.</li>
 <td>2</td>
 </tr>
 <tr>
-<td>3. Comparar pronósticos</td>
+<td>3. Pronosticar S_F</td>
 <td>Métodos sencillos de referencia frente a alternativas justificadas, con evaluación temporal, incertidumbre y un horizonte que cubra el tiempo de entrega y el intervalo de revisión.</td>
 <td>3</td>
 </tr>
@@ -4874,7 +4878,7 @@ se ha calculado todavía.</li>
 </tbody>
 </table></div>
 <p>Cómo se medirá el resultado. La aspiración de estar siempre abastecidos sin perder dinero se evaluará con metas medibles, acordadas con la empresa antes de comparar resultados: proporción de unidades atendidas oportunamente, frecuencia y duración de faltantes, unidades vencidas o dadas de baja, inventario promedio mantenido y costos relevantes. Sin costos conciliados se compararán resultados en unidades; sin lotes validados no se afirmará una reducción de vencimientos. Una mejora simulada no equivale a un beneficio ya obtenido.</p>
-<p>Volviendo a la pregunta inicial. Determinar cuánto y cuándo comprar cada referencia exige combinar su comportamiento histórico con las existencias utilizables, los tiempos de reposición y los vencimientos. Este EDA resolvió la primera parte: dejó el histórico trazable, caracterizado por referencia y con sus límites explícitos. La siguiente etapa es validar la medida de consumo e incorporar los datos operativos; solo entonces podrán compararse pronósticos y políticas que respondan la pregunta con cantidades y momentos de compra evaluados.</p>
+<p>Volviendo a la pregunta inicial. Determinar cuánto y cuándo comprar cada referencia exige combinar su comportamiento histórico con las existencias utilizables, los tiempos de reposición y los vencimientos. Este EDA resolvió la primera parte: dejó el histórico trazable, definió la variable objetivo S_F y la caracterizó por referencia, con sus límites explícitos. La siguiente etapa es afinar S_F con la empresa e incorporar los datos operativos; con ellos podrán pronosticarse las salidas facturadas y simularse políticas que respondan la pregunta con cantidades y momentos de compra evaluados.</p>
 </div>
 <div class="md"><hr/>
 <h2 id="anexo-tecnico-reproducibilidad">Anexo técnico · Reproducibilidad</h2>
